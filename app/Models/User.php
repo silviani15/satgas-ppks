@@ -16,11 +16,13 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    // protected $fillable = [
-    //     'name',
-    //     'email',
-    //     'password',
-    // ];
+    protected $fillable = [
+        'name',
+        'username',
+        'email',
+        'password',
+        'is_admin', // Tambahkan is_admin ke dalam $fillable
+    ];
 
     protected $guarded = ['id'];
 
@@ -51,4 +53,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+    
 }

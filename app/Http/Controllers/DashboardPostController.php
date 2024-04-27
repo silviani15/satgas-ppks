@@ -105,8 +105,7 @@ class DashboardPostController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
 
-        Post::where('id', $artikel->id)
-            ->update($validatedData);
+        Post::where('id', $artikel->id)->update($validatedData);
 
         return redirect('/dashboard/artikel')->with('success', 'Artikel has been updated!');
         

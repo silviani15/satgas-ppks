@@ -13,7 +13,8 @@
     </div>
 
     <div class="row">
-        <p><a href="/" class="btn my-2" style="background-color: #007663; color: #EBFEFE; margin-left: 1030px"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a></p>
+        <p><a href="/" class="btn my-2" style="background-color: #007663; color: #EBFEFE; margin-left: 1030px"><i
+                    class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a></p>
         <h5 style="margin-bottom: 25px">Daftar Laporan</h5>
 
         <div class="col">
@@ -27,7 +28,7 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title">Diterima</h5>
-                                    <p class="card-text">1</p>
+                                    <p class="card-text">{{ $total_pengaduan }}</p>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +46,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">Diproses</h5>
-                                <p class="card-text">0</p>
+                                <p class="card-text">{{ $pengaduan_Diproses }}</p>
                             </div>
                         </div>
                     </div>
@@ -62,7 +63,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">Selesai</h5>
-                                <p class="card-text">0</p>
+                                <p class="card-text">{{ $pengaduan_Selesai }}</p>
                             </div>
                         </div>
                     </div>
@@ -80,7 +81,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">Ditolak</h5>
-                                <p class="card-text">0</p>
+                                <p class="card-text">{{ $pengaduan_Ditolak }}</p>
                             </div>
                         </div>
                     </div>

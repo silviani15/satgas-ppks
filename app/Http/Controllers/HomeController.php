@@ -83,11 +83,11 @@ class HomeController extends Controller
     ]);
     }
 
-    public function tracking(){
-        return view('main.tracking', ["title" => "Tracking Aduan",
-        "active" => 'Tracking Aduan',
-    ]);
-    }
+    // public function tracking(){
+    //     return view('main.tracking', ["title" => "Tracking Aduan",
+    //     "active" => 'Tracking Aduan',
+    // ]);
+    // }
 
     public function materi(){
         return view('main.materi', ["title" => "Materi Satgas",

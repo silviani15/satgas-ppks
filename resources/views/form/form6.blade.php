@@ -13,6 +13,13 @@
 @endsection
 
 @section('container')
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
     <div class="f1">
         <div class="f1-steps" style="margin-top: 10%">
             <div class="f1-progress">
@@ -47,83 +54,84 @@
     <br>
 
     <!-- step 6 -->
-    @if ($errors->any())
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
-    <form action="{{ route('verify_otp') }}" method="POST" enctype="multipart/form-data">
+
+    <form action="/submit-all" method="post">
         @csrf
-        <fieldset>
-            <div class="alert bg-light" action="{{ route('verify_otp') }}" enctype="multipart/form-data">
-                <hr />
-                <div class="form-group mt-3">
-                    <label for="file_lampiran">Lampirkan bukti/file pendukung (Hanya diperlukan jika
-                        menurut Anda dapat membantu). Bukti pendukung tidak lebih dari 10 Mb. Mohon unggah file
-                        HANYA dalam bentuk PDF/JPEG/png/jpg/webp/rar/zip</label>
-                    <input type="file" class="form-control mt-1" placeholder="masukan file anda" name="file_lampiran"
-                        id="file_lampiran" enctype="multipart/form-data" multiple />
-                </div>
-                <div class="form-group mt-3">
-                    <label for="kode_otp">Kode OTP <span class="text-info">(dikirim ke email yang telah
-                            anda isi pada langkah 5)</span><small class="text-danger">*</small></label>
+        <form action="{{ route('verify_otp') }}" method="POST" enctype="multipart/form-data">
+            @csrf
 
-                    <div class="input-group">
-                        <input type="text" class="form-control required" placeholder="Masukkan kode OTP" name="kode_otp"
-                            id="kode_otp" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        {{-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">Kirim OTP</button> --}}
-                        <button type="button" id="kirim_otp_button" class="btn btn-primary">Kirim OTP</button>
+            <fieldset>
+                <div class="alert bg-light" action="{{ route('verify_otp') }}" enctype="multipart/form-data">
+                    <hr />
+                    <div class="form-group mt-3">
+                        <label for="file_lampiran">Lampirkan bukti/file pendukung (Hanya diperlukan jika
+                            menurut Anda dapat membantu). Bukti pendukung tidak lebih dari 10 Mb. Mohon unggah file
+                            HANYA dalam bentuk PDF/JPEG/png/jpg/webp/rar/zip</label>
+                        <input type="file" class="form-control mt-1" placeholder="masukan file anda" name="file_lampiran"
+                            id="file_lampiran"  multiple />
                     </div>
+                    <div class="form-group mt-3">
+                        <label for="kode_otp">Kode OTP <span class="text-info">(dikirim ke email yang telah
+                                anda isi pada langkah 5)</span><small class="text-danger">*</small></label>
 
-                    @if ($errors->has('kode_otp'))
-                        <div class="alert alert-danger">Field is required.</div>
-                    @endif
+                        <div class="input-group">
+                            <input type="text" class="form-control required" placeholder="Masukkan kode OTP"
+                                name="kode_otp" id="kode_otp" aria-label="Recipient's username"
+                                aria-describedby="button-addon2">
+                            {{-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">Kirim OTP</button> --}}
+                            <button type="button" id="kirim_otp_button" class="btn btn-primary">Kirim OTP</button>
+                        </div>
+
+                        @if ($errors->has('kode_otp'))
+                            <div class="alert alert-danger">Field is required.</div>
+                        @endif
+                    </div>
+                    <div class="alert alert-warning mt-3">
+                        <p>Kami memberitahu Anda 2 hal penting:</p>
+                        <ul>
+                            <li>
+                                Jika orang yang diyakini bertanggung jawab atas pelecehan seksual tersebut bukan
+                                mahasiswa atau staf UKDW, Universitas tidak dapat mengambil tindakan penyidikan
+                                atau disiplin terhadap mereka (meskipun masalah ini dapat
+                                dirujuk ke Polisi dan meskipun pihak UKDW telah melakukannya).
+                            </li>
+                            <li>
+                                Jika orang yang diyakini bertanggung jawab atas pelecehan seksual tersebut
+                                adalah mahasiswa atau staf UKDW, pihak UKDW akan menghubungi anda untuk
+                                mendapatkan informasi lebih lanjut sebelum mengambil tindakan
+                                penyidikan atau disiplin terhadap mereka.
+                            </li>
+                        </ul>
+                        <p>Jika Anda telah memberikan kami informasi detail mengenai kontak Anda, kami akan
+                            menghubungi Anda dengan metode pilihan yang telah anda pilih pada kuesioner ini.</p>
+                        <br />
+                        <p>
+                            Setelah mengirimkan formulir ini, anda akan melihat Nomor Pelaporan dan URL untuk
+                            melacak perkembangan status pelaporan anda. <b>Mohon dapat dicatat </b>. Selain itu,
+                            jika anda memasukkan alamat email, maka nomor
+                            pelaporan, URL status, dan salinan kuesioner akan dikirim ke alamat email anda.
+                        </p>
+                        <p>Jika anda mengalami kesulitan saat mengirimkan kuesioner ini, atau terdapat gangguan
+                            internet. Mohon dapat mengirimkan ke email <span
+                                class="text-primary">ppks@staff.ukdw.ac.id</span>
+                        </p>
+                    </div>
+                    <div class="form-check ml-3">
+                        <input type="checkbox" name="agree_terms" class="form-check-input" id="exampleCheck1" required />
+                        <label class="form-check-label" for="exampleCheck1" required><b>Saya Setuju dengan
+                                ketentuan di atas</b></label>
+                    </div>
+                    <div id="submit_button" class="f1-buttons float-end mt-4 mb-4">
+                        <button type="button" id="button-back" name="previous_button"
+                            class="btn btn-warning btn-previous"><i class="fa fa-arrow-left"></i>
+                            Sebelumnya</button>
+                        <button for="dagree_terms" type="submit" class="btn btn-success btn-submit"><i
+                                class="fa fa-save"></i>
+                            Kirim Aduan</button>
+                    </div>
                 </div>
-                <div class="alert alert-warning mt-3">
-                    <p>Kami memberitahu Anda 2 hal penting:</p>
-                    <ul>
-                        <li>
-                            Jika orang yang diyakini bertanggung jawab atas pelecehan seksual tersebut bukan
-                            mahasiswa atau staf UKDW, Universitas tidak dapat mengambil tindakan penyidikan
-                            atau disiplin terhadap mereka (meskipun masalah ini dapat
-                            dirujuk ke Polisi dan meskipun pihak UKDW telah melakukannya).
-                        </li>
-                        <li>
-                            Jika orang yang diyakini bertanggung jawab atas pelecehan seksual tersebut
-                            adalah mahasiswa atau staf UKDW, pihak UKDW akan menghubungi anda untuk
-                            mendapatkan informasi lebih lanjut sebelum mengambil tindakan
-                            penyidikan atau disiplin terhadap mereka.
-                        </li>
-                    </ul>
-                    <p>Jika Anda telah memberikan kami informasi detail mengenai kontak Anda, kami akan
-                        menghubungi Anda dengan metode pilihan yang telah anda pilih pada kuesioner ini.</p>
-                    <br />
-                    <p>
-                        Setelah mengirimkan formulir ini, anda akan melihat Nomor Pelaporan dan URL untuk
-                        melacak perkembangan status pelaporan anda. <b>Mohon dapat dicatat </b>. Selain itu,
-                        jika anda memasukkan alamat email, maka nomor
-                        pelaporan, URL status, dan salinan kuesioner akan dikirim ke alamat email anda.
-                    </p>
-                    <p>Jika anda mengalami kesulitan saat mengirimkan kuesioner ini, atau terdapat gangguan
-                        internet. Mohon dapat mengirimkan ke email <span class="text-primary">ppks@staff.ukdw.ac.id</span>
-                    </p>
-                </div>
-                <div class="form-check ml-3">
-                    <input type="checkbox" name="agree_terms" class="form-check-input" id="exampleCheck1" required />
-                    <label class="form-check-label" for="exampleCheck1" required><b>Saya Setuju dengan
-                            ketentuan di atas</b></label>
-                </div>
-                <div id="submit_button" class="f1-buttons float-end mt-4 mb-4">
-                    <button type="button" id="button-back" name="previous_button" class="btn btn-warning btn-previous"><i
-                            class="fa fa-arrow-left"></i>
-                        Sebelumnya</button>
-                    <button for="dagree_terms" type="submit" class="btn btn-success btn-submit"><i class="fa fa-save"></i>
-                        Kirim Aduan</button>
-                </div>
-            </div>
-        </fieldset>
+            </fieldset>
+        </form>
     </form>
 @endsection
 
@@ -186,12 +194,11 @@
                 })
                 .then(data => {
                     alert('Berhasil mendapatkan kode trackingan: ' + data.kode_tracking);
-                    // Redirect ke halaman tracking
-                    window.location.href = '{{ route('tracking') }}';
+                    window.location.href = '{{ route('trackingAduan') }}';
                 })
                 .catch(error => {
                     alert(error.message);
                 });
-            });
+        });
     });
 </script>

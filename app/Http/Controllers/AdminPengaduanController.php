@@ -8,20 +8,30 @@ use App\Models\Pengaduan;
 class AdminPengaduanController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource.   
      */
     public function index()
     {
-        $pengaduans = Pengaduan::all();
-        return view('dashboard.pengaduan.index', compact('pengaduans'));
+        $pengaduan = Pengaduan::all();
+        return view('dashboard.pengaduan.index', compact('pengaduan'));
     }
+
+    public function dashboard()
+        {
+            $total_pengaduan = Pengaduan::count();
+            $pengaduan_Diproses = Pengaduan::where('status_laporan', 'Diproses')->count();
+            $pengaduan_Selesai = Pengaduan::where('status_laporan', 'Selesai')->count();
+            $pengaduan_Ditolak = Pengaduan::where('status_laporan', 'Ditolak')->count();
+            
+            return view('dashboard.dashboard', compact('total_pengaduan', 'pengaduan_Diproses', 'pengaduan_Selesai', 'pengaduan_Ditolak'));
+        }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('dashboard.pengaduan.create');
+        // return view('dashboard.pengaduan.create');
     }
 
     /**
@@ -45,19 +55,42 @@ class AdminPengaduanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
+        // $id = intval($id); 
         $pengaduan = Pengaduan::findOrFail($id);
         return view('dashboard.pengaduan.show', compact('pengaduan'));
     }
+
+    public function statusOnchange($id) 
+    {
+        $pengaduan = Pengaduan::findOrFail($id);
+
+        $status = request()->input('status');
+        $pengaduan->status_laporan = $status;
+
+        // Mengubah status_laporan berdasarkan status
+        if ($status == "proses") {
+            $pengaduan->status_laporan = "Diproses";
+        } else if ($status == "selesai") {
+            $pengaduan->status_laporan = "Selesai";
+        } else {
+            $pengaduan->status_laporan = "Belum divalidasi";
+        }
+
+        $pengaduan->save();
+
+        return redirect()->back();
+    }
+
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        $pengaduan = Pengaduan::findOrFail($id);
-        return view('dashboard.pengaduan.edit', compact('pengaduan'));
+        // $pengaduan = Pengaduan::findOrFail($id);
+        // return view('dashboard.pengaduan.edit', compact('pengaduan'));
     }
 
     /**
@@ -82,12 +115,24 @@ class AdminPengaduanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        $pengaduan = Pengaduan::findOrFail($id);
-        $pengaduan->delete();
+        // $pengaduan = Pengaduan::findOrFail($id);
+        // $pengaduan->delete();
 
-        return redirect()->route('admin.pengaduan.index')
-            ->with('success', 'Pengaduan berhasil dihapus.');
+        // return redirect()->back()->with('danger', 'Pengaduan berhasil dihapus.');
     }
+
+    public function reject($id)
+    {
+        $pengaduan = Pengaduan::findOrFail($id); // Temukan pengaduan
+        $pengaduan->status_laporan = "Ditolak"; // Ubah status laporan menjadi "selesai"
+
+        // Simpan perubahan
+        $pengaduan->save();
+
+        // Redirect dengan pesan flash
+        return redirect()->route('pengaduan.index')->with('danger', 'Pengaduan berhasil ditolak dan dianggap selesai.');
+    }
+
 }

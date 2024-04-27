@@ -18,13 +18,15 @@
             </li>
         </ul>
 
-        @can('admin')
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/petugas*') ? 'active' : '' }}" href="/dashboard/petugas">
-                    <i class="fa-solid fa-circle-user"></i> Petugas</a>
-            </li>
-        </ul>
-        @endcan
+        @unless (auth()->user() && auth()->user()->is_admin === 'petugas')
+            @can('admin')
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('dashboard/petugas*') ? 'active' : '' }}" href="/dashboard/petugas">
+                            <i class="fa-solid fa-circle-user"></i> Petugas</a>
+                    </li>
+                </ul>
+            @endcan
+        @endunless
     </div>
 </nav>

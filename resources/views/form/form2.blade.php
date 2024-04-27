@@ -57,25 +57,25 @@
                             class="text-danger">*</small></label>
                     <select name="tempat_insiden" id="tempat_insiden" class="form-control mt-1 required">
                         <option value="">- pilih -</option>
-                        <option value="13">Selama perjalanan (Misal. Mobil Online)</option>
-                        <option value="14">Selama kegiatan diluar Kampus UKDW</option>
-                        <option value="15">Diluar lingkungan kampus dan sedang tidak ada kegiatan apapun di UKDW
+                        <option value="Selama perjalanan (Misal. Mobil Online)">Selama perjalanan (Misal. Mobil Online)</option>
+                        <option value="Selama kegiatan diluar Kampus UKDW">Selama kegiatan diluar Kampus UKDW</option>
+                        <option value="Diluar lingkungan kampus dan sedang tidak ada kegiatan apapun di UKDW">Diluar lingkungan kampus dan sedang tidak ada kegiatan apapun di UKDW
                         </option>
-                        <option value="16">Saat mengikuti kegiatan UKDW diluar lingkungan kampus</option>
-                        <option value="17">Saat di Transportasi Publik</option>
-                        <option value="18">Sosial Media (Online)</option>
-                        <option value="19">Saat Perjalanan Pribadi</option>
-                        <option value="20">Perjalanan yang diatur oleh UKDW</option>
-                        <option value="21">Perjalanan yang beruhubungan dengan UKDW</option>
-                        <option value="22">UKDW Yogyakarta</option>
-                        <option value="23">Klinik UKDW</option>
-                        <option value="24">Perpustakaan UKDW</option>
-                        <option value="25">Lapangan UKDW</option>
-                        <option value="26">Studi Banding UKDW</option>
-                        <option value="27">Saat Magang di UKDW</option>
-                        <option value="28">Berbagi tempat / Kejadian</option>
-                        <option value="29">Tidak Yakin</option>
-                        <option value="30">Lainnya</option>
+                        <option value="Saat mengikuti kegiatan UKDW diluar lingkungan kampus">Saat mengikuti kegiatan UKDW diluar lingkungan kampus</option>
+                        <option value="Saat di Transportasi Publik">Saat di Transportasi Publik</option>
+                        <option value="Sosial Media (Online)">Sosial Media (Online)</option>
+                        <option value="Saat Perjalanan Pribadi">Saat Perjalanan Pribadi</option>
+                        <option value="Perjalanan yang diatur oleh UKDW">Perjalanan yang diatur oleh UKDW</option>
+                        <option value="Perjalanan yang beruhubungan dengan UKDW">Perjalanan yang beruhubungan dengan UKDW</option>
+                        <option value="UKDW Yogyakarta">UKDW Yogyakarta</option>
+                        <option value="Klinik UKDW">Klinik UKDW</option>
+                        <option value="Perpustakaan UKDW">Perpustakaan UKDW</option>
+                        <option value="Lapangan UKDW">Lapangan UKDW</option>
+                        <option value="Studi Banding UKDW">Studi Banding UKDW</option>
+                        <option value="Saat Magang di UKDW">Saat Magang di UKDW</option>
+                        <option value="Berbagi tempat / Kejadian">Berbagi tempat / Kejadian</option>
+                        <option value="Tidak Yakin">Tidak Yakin</option>
+                        <option value="Lainnya">Lainnya</option>
                     </select>
                     @if ($errors->has('tempat_insiden'))
                         <div class="alert alert-danger">Field is required.</div>
@@ -102,25 +102,24 @@
                     </p>
                     <select name="waktu_peristiwa" id="waktu_peristiwa" class="form-control mt-1 required">
                         <option value="">- pilih -</option>
-                        <option value="31">Dalam 3x24 jam terakhir</option>
-                        <option value="32">Dalam 5 bulan terakhir</option>
-                        <option value="33">Dalam 12 bulan terakhir</option>
-                        <option value="34">Lebih dari 1 tahun, kurang dari 3 tahun</option>
-                        <option value="35">Lebih dari 5 tahun yang lalu</option>
-                        <option value="36">Lebih dari 10 tahun yang lalu</option>
+                        <option value="Dalam 3x24 jam terakhir">Dalam 3x24 jam terakhir</option>
+                        <option value="Dalam 5 bulan terakhir">Dalam 5 bulan terakhir</option>
+                        <option value="Dalam 12 bulan terakhir">Dalam 12 bulan terakhir</option>
+                        <option value="Lebih dari 1 tahun, kurang dari 3 tahun">Lebih dari 1 tahun, kurang dari 3 tahun</option>
+                        <option value="Lebih dari 5 tahun yang lalu">Lebih dari 5 tahun yang lalu</option>
+                        <option value="Lebih dari 10 tahun yang lalu">Lebih dari 10 tahun yang lalu</option>
                     </select>
                     @if ($errors->has('waktu_peristiwa'))
                         <div class="alert alert-danger">Field is required.</div>
                     @endif
                 </div>
                 <div class="form-group mt-3">
-                    <label for="kuantitas_insiden">Apakah insiden pelecehan tersebut terjadi lebih dari
-                        satu kali?
+                    <label for="kuantitas_insiden">Apakah insiden pelecehan tersebut terjadi lebih dari satu kali?
                         <small class="text-danger">*</small></label>
                     <select name="kuantitas_insiden" id="kuantitas_insiden" class="form-control mt-1 required">
                         <option value="">- pilih -</option>
-                        <option value="37">Ya</option>
-                        <option value="38">Tidak</option>
+                        <option value="1">Ya</option>
+                        <option value="0">Tidak</option>
                     </select>
                     @if ($errors->has('kuantitas_insiden'))
                         <div class="alert alert-danger">Field is required.</div>
@@ -130,8 +129,8 @@
                     <label for="apakah_masih_terjadi">Apakah masih terjadi? <small class="text-danger">*</small></label>
                     <select name="apakah_masih_terjadi" id="apakah_masih_terjadi" class="form-control mt-1 required">
                         <option value="">- pilih -</option>
-                        <option value="39">Ya</option>
-                        <option value="40">Tidak</option>
+                        <option value="1">Ya</option>
+                        <option value="0">Tidak</option>
                     </select>
                     @if ($errors->has('apakah_masih_terjadi'))
                         <div class="alert alert-danger">Field is required.</div>
@@ -139,7 +138,7 @@
                 </div>
                 <div class="form-group mt-3">
                     <label for="uraian_kejadian">Apa yang terjadi? <small class="text-danger">*</small></label>
-                    <input name="uraian_kejadian" id="uraian_kejadian" class="form-control mt-1 required"> </input>
+                    <textarea name="uraian_kejadian" id="uraian_kejadian" class="form-control mt-1 required"> </textarea>
                     @if ($errors->has('uraian_kejadian'))
                         <div class="alert alert-danger">Field is required.</div>
                     @endif

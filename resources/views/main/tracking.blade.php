@@ -20,7 +20,7 @@
             <section class="">
                 <div class="container mb-4">
                     <form action="#" method="POST">
-                        <input type="hidden" name="_token" value="">
+                    <input type="hidden" name="_token" value="">
                         <div class="form-group">
                             <label for="">Silakan masukkan kode aduan yang anda dapatkan saat melakukan
                                 pelaporan. Kode
@@ -31,7 +31,7 @@
                         </div>
                         <br>
                         <div class="float-end">
-                            <a href="#" class="btn btn-primary" type="submit">Cari aduan</a>
+                            <a href="/tracking/detailtracking" class="btn btn-primary" type="submit">Cari aduan</a>
                         </div>
                     </form><br>
                 </div>

@@ -38,7 +38,7 @@
                     style="background-color: #EBFEFE" />
                 <h1 class="pdf-title">Materi Penting Lainnya</h1>
                 <p>Kumpulan Materi Penting tentang Pencegahan dan Penanganan Kekerasan Seksual</p>
-                <a href="{{ route('detailmateri') }}" class="detail-btn">Detail</a>
+                <a href="/materi/detailmateri" class="detail-btn">Detail</a>
             </div>
         </div>
     </div><br>

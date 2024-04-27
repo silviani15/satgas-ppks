@@ -30,7 +30,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Category</th>
-                    <th scope="col">Action</th>
+                    <th scope="col" >Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,7 +50,7 @@
                                 @method('delete')
                                 @csrf
                                 <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i
-                                        class="fa-solid fa-circle-xmark"></i></button>
+                                        class="fa-solid fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>

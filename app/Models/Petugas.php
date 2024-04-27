@@ -11,5 +11,5 @@ class Petugas extends Model
     
     protected $table = 'users';
     
-    protected $fillable = ['nama', 'username', 'email', 'is_admin'];
+    protected $fillable = ['nama', 'username', 'email', 'is_admin', 'activation_status'];
 }

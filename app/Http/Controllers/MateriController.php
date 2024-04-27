@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class MateriController extends Controller
 {
-    public function detail()
+    public function detailmateri()
     {
         return view('main.detailmateri', [
             "title" => "Materi Satgas", 

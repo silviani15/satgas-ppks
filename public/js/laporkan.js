@@ -46,7 +46,7 @@ function removeErrorMessage(inputField) {
 function cekStatusAnonim() {
     var statusAnonimCheckbox = $("#status_anonim");
     var namaPelaporInput = $("#nama_pelapor");
-    var jenisKelaminCheckboxes = $("[name='layanan_dicoba[]']");
+    var jenisKelaminCheckboxes = $("input[name='jenis_kelamin']");
     var usiaPelaporInput = $("#usia_pelapor");
     var nomorteleponInput = $("#nomor_telepon_pelapor");
 
@@ -62,7 +62,6 @@ function cekStatusAnonim() {
         nomorteleponInput.prop("disabled", false);
     }
 }
-
 function addTextareaValidation(textarea) {
     textarea.on("input", function () {
         if ($(this).val().trim() !== "") {

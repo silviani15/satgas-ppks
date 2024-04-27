@@ -3,6 +3,7 @@
     .navbar {
         padding-right: 13% !important;
     }
+
     .hide {
         display: none !important;
     }
@@ -56,8 +57,8 @@
                         class="text-decoration-none text-dark">{{ $artikel[0]->title }}</a></h3>
                 <p>
                     <small class="text-muted">
-                        By. <a
-                            href="/authors/{{ $artikel[0]->author->username }}" class="text-decoration-none">{{ $artikel[0]->author->name }}</a>
+                        By. <a href="/authors/{{ $artikel[0]->author->username }}"
+                            class="text-decoration-none">{{ $artikel[0]->author->name }}</a>
                         in <a href="/categories/{{ $artikel[0]->category->slug }}"
                             class="text-decoration-none">{{ $artikel[0]->category->name }}</a>
                         {{ $artikel[0]->created_at->diffForHumans() }}
@@ -76,12 +77,12 @@
                     <div class="col-md-4 mb-3">
                         <div class="card">
                             <div class="position-absolute px-3 py-2" style="background-color: rgba(0,0,0,0.7)"><a
-                                    href="/category/{{ $artikel->category->slug }}"
+                                    href="/categories/{{ $artikel->category->slug }}"
                                     class="text-white text-decoration-none">{{ $artikel->category->name }}</a></div>
 
                             @if ($artikel->image)
-                                <img src="{{ asset('storage/' . $artikel->image) }}"
-                                    alt="{{ $artikel->category->name }}" class="img-fluid">
+                                <img src="{{ asset('storage/' . $artikel->image) }}" alt="{{ $artikel->category->name }}"
+                                    class="img-fluid">
                             @else
                                 <img src="https://source.unsplash.com/500x400?{{ $artikel->category->name }}"
                                     class="card-img-top" alt="{{ $artikel->category->name }}">
@@ -92,8 +93,17 @@
                                 <h5 class="card-title">{{ $artikel->title }}</h5>
                                 <p>
                                     <small class="text-muted">
-                                        By. <a
+                                        {{-- By. <a
                                             href="/authors/{{ $artikel->author->username }}" class="text-decoration-none">{{ $artikel->author->name }}</a>
+                                        {{ $artikel->created_at->diffForHumans() }} --}}
+                                        @if ($artikel->author)
+                                            By. <a href="/authors/{{ $artikel->author->username }}"
+                                                class="text-decoration-none">
+                                                {{ $artikel->author->name }}
+                                            </a>
+                                        @else
+                                            By. Author Tidak Diketahui
+                                        @endif
                                         {{ $artikel->created_at->diffForHumans() }}
                                     </small>
                                 </p>

@@ -55,20 +55,26 @@
             <div class="alert bg-light">
                 <hr />
                 <div class="form-group mt-3">
-                    <label for="apakah_kamu">Apakah kamu ? <small class="text-danger">*</small></label>
+                    <label for="apakah_pkamu">Apakah kamu ? <small class="text-danger">*</small></label>
                     <select name="apakah_kamu" id="apakah_kamu" class="form-control mt-1 required">
-                        <option value="">- pilih -</option>
-                        <option value="1">Individu yang pernah mengalami sebuah insiden pelecahan
+                        <option value="" selected disabled>- pilih -</option>
+                        <option value="Individu yang pernah mengalami sebuah insiden pelecahan seksual">Individu yang pernah
+                            mengalami sebuah insiden pelecahan
                             seksual</option>
-                        <option value="2">Individu yang membantu orang lain yang mengalami sebuah
+                        <option value="Individu yang membantu orang lain yang mengalami sebuah pelecehan seksual">Individu
+                            yang membantu orang lain yang mengalami sebuah
                             pelecehan seksual</option>
-                        <option value="3">Responden dari UKDW</option>
-                        <option value="4">Bagian Unit Pengaduan (Misal. Satpam, atau yang memiliki
+                        <option value="Responden dari UKDW">Responden dari UKDW</option>
+                        <option
+                            value="Bagian Unit Pengaduan (Misal. Satpam, atau yang memiliki wewenang untuk membantu seseorang yang mengalami insiden pelecehan seksual)">
+                            Bagian Unit Pengaduan (Misal. Satpam, atau yang memiliki
                             wewenang untuk membantu seseorang yang mengalami insiden pelecehan seksual)
                         </option>
-                        <option value="5">Individu yang menyaksikan sebuah insiden pelecehan seksual
+                        <option value="Individu yang menyaksikan sebuah insiden pelecehan seksual">Individu yang menyaksikan
+                            sebuah insiden pelecehan seksual
                         </option>
-                        <option value="6">Memilih untuk tidak mengungkapkan identitas</option>
+                        <option value="Memilih untuk tidak mengungkapkan identitas">Memilih untuk tidak mengungkapkan
+                            identitas</option>
                     </select>
                     @if ($errors->has('apakah_kamu'))
                         <div class="alert alert-danger">Field is required.</div>
@@ -79,13 +85,14 @@
                         merupakan? <small class="text-danger">*</small></label>
                     <select name="individu_terkena_dampak" id="individu_terkena_dampak" class="form-control mt-1 required">
                         <option value="">- pilih -</option>
-                        <option value="7">Bagian dari UKDW (Misalnya : Tamu, Pegawai Kantin, Tukang di lingkungan UKDW)
+                        <option value="Bagian dari UKDW (Misalnya : Tamu, Pegawai Kantin, Tukang di lingkungan UKDW)">Bagian
+                            dari UKDW (Misalnya : Tamu, Pegawai Kantin, Tukang di lingkungan UKDW)
                         </option>
-                        <option value="8">Alumni UKDW</option>
-                        <option value="9">Mahasiswa aktif UKDW</option>
-                        <option value="10">Staff UKDW yang masih aktif bekerja</option>
-                        <option value="11">Staff UKDW yang telah pensiun</option>
-                        <option value="12">Masyarakat umum</option>
+                        <option value="Alumni UKDW">Alumni UKDW</option>
+                        <option value="Mahasiswa aktif UKDW">Mahasiswa aktif UKDW</option>
+                        <option value="Staff UKDW yang masih aktif bekerja">Staff UKDW yang masih aktif bekerja</option>
+                        <option value="Staff UKDW yang telah pensiun">Staff UKDW yang telah pensiun</option>
+                        <option value="Masyarakat umum">Masyarakat umum</option>
                     </select>
                     @if ($errors->has('individu_terkena_dampak'))
                         <div class="alert alert-danger">Field is required.</div>

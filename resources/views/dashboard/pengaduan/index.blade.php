@@ -29,7 +29,7 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Tgl_Pengaduan</th>
+                    <th scope="col">Kode Tracking</th>
                     <th scope="col">Email</th>
                     <th scope="col">Bagian dari UKDW</th>
                     <th scope="col">Status Laporan</th>
@@ -37,37 +37,27 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($pengaduans as $pengaduan)
+                @foreach ($pengaduan as $pengaduan)
                     <tr>
                         <th scope="row">{{ $pengaduan->id }}</th>
-                        <td>{{ $pengaduan->tgl_pengaduan }}</td>
-                        <td>{{ $pengaduan->email }}</td>
-                        <td>{{ $pengaduan->bagian_ukdw }}</td>
+                        <td>{{ $pengaduan->kode_tracking }}</td>
+                        <td>{{ $pengaduan->email_pelapor }}</td>
+                        <td>{{ $pengaduan->individu_terkena_dampak }}</td>
                         <td>{{ $pengaduan->status_laporan }}</td>
                         <td>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="statusDropdown{{ $pengaduan->id }}" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {{ $pengaduan->status_laporan }}
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="statusDropdown{{ $pengaduan->id }}">
-                                    <li><a class="dropdown-item" href="#">Belum divalidasi</a></li>
-                                    <li><a class="dropdown-item" href="#">Proses</a></li>
-                                    <li><a class="dropdown-item" href="#">Selesai</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.pengaduan.edit', $pengaduan->id) }}" class="btn btn-primary">Edit</a>
-                            <a href="{{ route('admin.pengaduan.show', $pengaduan->id) }}" class="btn btn-info">Detail</a>
-                            <form action="{{ route('admin.pengaduan.destroy', $pengaduan->id) }}" method="POST" style="display: inline-block;">
+                            <a href="/dashboard/pengaduan/{{ $pengaduan->id }}" class="btn btn-info"
+                                style="color: #ffffff;"><i class="fa-solid fa-clipboard"></i> Detail</a>
+                            <form action="/dashboard/pengaduan/reject/{{ $pengaduan->id }}" method="post" class="d-inline">
                                 @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-circle-xmark"
+                                        style="color: #ffffff;"></i>
+                                    Tolak</button>
                             </form>
+                        </td>
+                        </div>
                     </tr>
                 @endforeach
             </tbody>
-        </table>
     </div>
 @endsection
 

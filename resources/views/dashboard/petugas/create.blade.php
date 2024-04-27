@@ -63,14 +63,14 @@
                 <div class="form-floating">
                     <select name="role" class="form-select rounded-bottom @error('role') is-invalid @enderror" id="role" required>
                         <option value="">Pilih Role</option>
-                        <option value="admin">Admin</option>
-                        <option value="petugas">Petugas</option>
+                        <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                        <option value="petugas" {{ old('role') == 'petugas' ? 'selected' : '' }}>Petugas</option>
                     </select>
                     <label for="role">Role</label>
                     @error('role')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                </div>
+                </div>                
 
                 <button class="btn w-100 py-2 mt-3" style="background-color: #04372E; color: #EBFEFE"
                     type="submit">Daftar</button>

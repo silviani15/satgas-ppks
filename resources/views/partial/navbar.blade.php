@@ -56,7 +56,7 @@
                 @auth
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                            data-bs-toggle="dropdown" aria-expanded="false" style="color: #EBFEFE">
                             Welcome, {{ auth()->user()->username }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -67,16 +67,8 @@
                             </li>
                             <form id="logoutForm" action="/logout" method="post">
                                 @csrf
-                                <button type="button" class="dropdown-item" onclick="confirmLogout()"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                                <button type="submit" class="dropdown-item" onclick="return confirm('Apakah Anda yakin ingin keluar?')"><i class="bi bi-box-arrow-right"></i> Logout</button>
                             </form>
-                            
-                            <script>
-                                function confirmLogout() {
-                                    if (confirm("Apakah Anda yakin ingin keluar?")) {
-                                        document.getElementById("logoutForm").submit();
-                                    }
-                                }
-                            </script>
                         </ul>
                     </li>
                 @else

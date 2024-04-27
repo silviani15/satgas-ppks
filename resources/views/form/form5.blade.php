@@ -12,31 +12,43 @@
     </style>
     <script>
         function cekStatusAnonim() {
-            var namaPelapor = document.getElementById('nama_pelapor');
-            var jenisKelaminPerempuan = document.getElementById('jenis_kelamin_perempuan');
-            var jenisKelaminLaki = document.getElementById('jenis_kelamin_laki');
-            var jenisKelaminLain = document.getElementById('jenis_kelamin_lain');
-            var usiaPelapor = document.getElementById('usia_pelapor');
-            var nomorTeleponPelapor = document.getElementById('nomor_telepon_pelapor');
+            const statusAnonim = document.getElementById('status_anonim').checked;
 
-            var statusAnonim = document.getElementById('status_anonim').checked;
+            // Referensi elemen input yang akan dinonaktifkan
+            const namaPelapor = document.getElementById('nama_pelapor');
+            const jenisKelaminPerempuan = document.getElementById('jenis_kelamin_perempuan');
+            const jenisKelaminLaki = document.getElementById('jenis_kelamin_laki');
+            const usiaPelapor = document.getElementById('usia_pelapor');
+            const nomorTeleponPelapor = document.getElementById('nomor_telepon_pelapor');
 
+            // Setel properti disabled sesuai status checkbox
             namaPelapor.disabled = statusAnonim;
             jenisKelaminPerempuan.disabled = statusAnonim;
             jenisKelaminLaki.disabled = statusAnonim;
-            jenisKelaminLain.disabled = statusAnonim;
             usiaPelapor.disabled = statusAnonim;
             nomorTeleponPelapor.disabled = statusAnonim;
 
+            // Jika dicentang, hapus nilai dan reset status
             if (statusAnonim) {
                 namaPelapor.value = '';
                 jenisKelaminPerempuan.checked = false;
                 jenisKelaminLaki.checked = false;
-                jenisKelaminLain.checked = false;
                 usiaPelapor.value = '';
                 nomorTeleponPelapor.value = '';
             }
         }
+
+        // Mendaftarkan event handler saat DOM sudah siap
+        document.addEventListener("DOMContentLoaded", function() {
+            const statusAnonimCheckbox = document.getElementById('status_anonim');
+
+            if (statusAnonimCheckbox) {
+                statusAnonimCheckbox.addEventListener('change', cekStatusAnonim);
+
+                // Cek status awal untuk memastikan input dalam state yang benar
+                cekStatusAnonim();
+            }
+        });
     </script>
 @endsection
 
@@ -86,7 +98,7 @@
                         memberikan bantuan kepada Anda.</label><br>
                     <div class="form-check"><br>
                         <input type="checkbox" class="form-check-input" id="status_anonim" name="status_anonim"
-                            onchange="cekStatusAnonim()" />
+                            onchange="cekStatusAnonim()" value="" />
                         <label class="form-check-label" for="exampleCheck1">Saya memilih untuk tetap
                             anonim</label>
                     </div>
@@ -96,27 +108,20 @@
                     <input type="text" class="form-control mt-1" placeholder="Nama Lengkap" name="nama_pelapor"
                         id="nama_pelapor" value="" />
                 </div>
-                <div class="form-group mt-3" for="jenis_Kelamin">
+                <div class="form-group mt-3">
                     <p>Jenis Kelamin</p>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="jenis_kelamin_perempuan" name="layanan_dicoba[]"
-                            value="41" />
+                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="jenis_kelamin_perempuan" value="Perempuan">
                         <label class="form-check-label" for="jenis_kelamin_perempuan">Perempuan</label>
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="jenis_kelamin_laki" name="layanan_dicoba[]"
-                            value="42" />
-                        <label class="form-check-label" for="jenis_kelamin_laki">Laki-laki</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="jenis_kelamin_lain" name="layanan_dicoba[]"
-                            value="43" />
-                        <label class="form-check-label" for="jenis_kelamin_lain">Yang lain</label>
+                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="jenis_kelamin_laki" value="Laki - Laki">
+                        <label class="form-check-label" for="jenis_kelamin_laki">Laki - Laki</label>
                     </div>
                 </div>
                 <div class="form-group mt-3">
                     <label for="usia_pelapor">Usia</label>
-                    <input type="text" class="form-control mt-1" placeholder="" name="usia_pelapor" id="usia_pelapor"
+                    <input type="text" class="form-control mt-1" placeholder="usia" name="usia_pelapor" id="usia_pelapor"
                         value="" />
                 </div>
                 <div class="form-group mt-3">
@@ -136,11 +141,11 @@
                     <label for="dihubungi_lewat">Dapat dihubungi melalui</label>
                     <select name="dihubungi_lewat" id="dihubungi_lewat" class="form-control mt-1">
                         <option value="">- pilih -</option>
-                        <option value="64">Whatsapp</option>
-                        <option value="65">DM Instagram</option>
-                        <option value="66">SMS</option>
-                        <option value="67">Email</option>
-                        <option value="68">Lainnya</option>
+                        <option value="Whatsapp">Whatsapp</option>
+                        <option value="DM Instagram">DM Instagram</option>
+                        <option value="SMS">SMS</option>
+                        <option value="Email">Email</option>
+                        <option value="Lainnya">Lainnya</option>
                     </select>
                 </div>
                 <div class="form-group mt-3">

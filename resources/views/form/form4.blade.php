@@ -45,17 +45,16 @@
             <div class="alert bg-light">
                 <hr />
                 <div class="form-group mt-3">
-                    <label for="orang_yang_bertanggungjawab">Seseorang yang bertanggung jawab atas
-                        Pelecehan Seksual tersebut
-                        ialah</label>
+                    <label for="orang_yang_bertanggungjawab">Seseorang yang bertanggung jawab atas Pelecehan Seksual tersebut ialah</label>
                     <select name="orang_yang_bertanggungjawab" id="orang_yang_bertanggungjawab" class="form-control mt-1">
                         <option value="">- pilih -</option>
-                        <option value="55">Orang yang memiliki hubungan dengan UKDW (Misal. Tamu, Pekerja di lingkungan
+                        <option value="Orang yang memiliki hubungan dengan UKDW (Misal. Tamu, Pekerja di lingkungan UKDW)">
+                            Orang yang memiliki hubungan dengan UKDW (Misal. Tamu, Pekerja di lingkungan
                             UKDW)</option>
-                        <option value="56">Alumni dari UKDW</option>
-                        <option value="57">Mahasiswa UKDW</option>
-                        <option value="58">Staff UKDW yang bekerja saat ini</option>
-                        <option value="59">Masyarakat Umum</option>
+                        <option value="Alumni dari UKDW">Alumni dari UKDW</option>
+                        <option value="Mahasiswa UKDW">Mahasiswa UKDW</option>
+                        <option value="Staff UKDW yang bekerja saat ini">Staff UKDW yang bekerja saat ini</option>
+                        <option value="Masyarakat Umum">Masyarakat Umum</option>
                     </select>
                 </div>
                 <div class="alert alert-warning mt-4">
@@ -98,11 +97,11 @@
                         pilih pilihan berikut</label>
                     <select name="alasan_merahasiakan" id="alasan_merahasiakan" class="form-control mt-1">
                         <option value="">- pilih -</option>
-                        <option value="60">Saya / Orang yang melaporkan kejadian tersebut tidak
+                        <option value="Saya / Orang yang melaporkan kejadian tersebut tidak mengetahui nama orang tersebut">Saya / Orang yang melaporkan kejadian tersebut tidak
                             mengetahui nama orang tersebut</option>
-                        <option value="61">Saya / Orang yang melaporkan kejadian tersebut tidak ingin
+                        <option value="Saya / Orang yang melaporkan kejadian tersebut tidak ingin mengungkapkan nama orang tersebut">Saya / Orang yang melaporkan kejadian tersebut tidak ingin
                             mengungkapkan nama orang tersebut</option>
-                        <option value="62">Saya / Orang yang melaporkan kejadian tersebut akan
+                        <option value="Saya / Orang yang melaporkan kejadian tersebut akan memberitahukan setelah mendapatkan informasi lebih lanjut">Saya / Orang yang melaporkan kejadian tersebut akan
                             memberitahukan setelah mendapatkan informasi lebih lanjut</option>
                     </select>
                 </div>

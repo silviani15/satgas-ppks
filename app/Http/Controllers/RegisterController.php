@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Hash;
 class RegisterController extends Controller
 {
     public function register(){
-        return view('register.register', ["title" => "Register",
-        "active" => 'Login Admin',
-    ]);
+        return view('register.register', [
+            "title" => "Register",
+            "active" => 'Login Admin',
+        ]);
     }
     
     public function store(Request $request) 
@@ -23,8 +24,16 @@ class RegisterController extends Controller
             'password' => 'required|min:5|max:255'
         ]);
 
-        // $validatedData['password'] = bcrypt($validatedData['password']);
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        // dd($validatedData);
+        // Debug setelah validasi
+        error_log('Data after validation: ' . print_r($validatedData, true));
+
+        $validatedData['password'] = bcrypt($validatedData['password']);
+        // $validatedData['password'] = Hash::make($validatedData['password']);
+        
+        // dd($validatedData);
+        // Debug setelah hashing
+        error_log('Data before creating user: ' . print_r($validatedData, true));
         
         User::create($validatedData);
         

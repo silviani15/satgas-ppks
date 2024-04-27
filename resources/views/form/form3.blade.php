@@ -57,40 +57,15 @@
                         <p>Apakah anda pernah mencoba salah satu Layanan dibawah ini? <small class="text-danger">*</small>
                         </p>
                     </label>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="layanan_dicoba"
-                            id="tindakan_dicoba" value="41" />
-                        <label class="form-check-label" for="exampleCheck1">Unit Pelaporan Pelecehan
-                            Seksual</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="layanan_dicoba"
-                            id="tindakan_dicoba" value="42" />
-                        <label class="form-check-label" for="exampleCheck1">Poliklinik UKDW </label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="layanan_dicoba"
-                            id="tindakan_dicoba" value="43" />
-                        <label class="form-check-label" for="exampleCheck1">Kepolisian</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="layanan_dicoba"
-                            id="tindakan_dicoba" value="44" />
-                        <label class="form-check-label" for="exampleCheck1">Belum ada satupun dari Layanan
-                            diatas</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="layanan_dicoba"
-                            id="tindakan_dicoba" value="45" />
-                        <label class="form-check-label" for="exampleCheck1">Tidak yakin/ Tidak tahu (Saya
-                            melaporkan atas nama orang lain) </label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="layanan_dicoba"
-                            id="tindakan_dicoba" value="46" />
-                        <label class="form-check-label" for="exampleCheck1">Akan mempertimbangkan pilihan
-                            setelah diberi saran</label>
-                    </div>
+
+                    @for ($i = 0; $i < count($layanan_dicoba); $i++)
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="tindakan_dicoba[]"
+                                id="tindakan_dicoba-{{ $layanan_dicoba[$i] }}" value="{{ $layanan_dicoba[$i] }}" />
+                            <label class="form-check-label" for="exampleCheck1">{{ $layanan_dicoba[$i] }}</label>
+                        </div>
+                    @endfor
+
                     <input type="text" placeholder="lainnya ..." class="form-control" name="layanan_lainnya"
                         value="" />
                     @if ($errors->has('layanan_dicoba'))
@@ -100,58 +75,16 @@
                 <div for="tindakan_dicoba">
                     <p class="mt-4">Tindakan seperti apa yang anda inginkan untuk dilakukan oleh UKDW?
                     </p>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="tindakan_dicoba"
-                            id="tindakan_dicoba" value="47" />
-                        <label class="form-check-label" for="exampleCheck1">Menghubungi dan memberi tahu
-                            pilihan apa yang tersedia untuk Anda*</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="tindakan_dicoba"
-                            id="tindakan_dicoba" value="48" />
-                        <label class="form-check-label" for="exampleCheck1">Memberi tahu secara detail
-                            Layanan
-                            khusus yang dapat membantu Anda*</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="tindakan_dicoba"
-                            id="tindakan_dicoba" value="49" />
-                        <label class="form-check-label" for="exampleCheck1">Jika peristiwa yang terjadi
-                            melibatkan Mahasiwa atau Staff, dan Anda merupakan Mahasiswa atau Staff UKDW,
-                            mendiskusikan dengan Anda untuk meminimalisir keterlibatan pihak lain*</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="tindakan_dicoba"
-                            id="tindakan_dicoba" value="50" />
-                        <label class="form-check-label" for="exampleCheck1">Memberi informasi untuk
-                            membantu
-                            Anda membuat laporan kepada Polisi. </label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="tindakan_dicoba"
-                            id="tindakan_dicoba" value="51" />
-                        <label class="form-check-label" for="exampleCheck1">Merujuk saya / mereka ke
-                            Layanan
-                            Penasihat Hukum (Misal. Pengacara) </label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="tindakan_dicoba"
-                            id="tindakan_dicoba" value="52" />
-                        <label class="form-check-label" for="exampleCheck1">Belum ada tindakan, sampai
-                            Anda
-                            mendapat lebih banyak pilihan informasi tindakan yang akan dilakukan</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="tindakan_dicoba"
-                            id="tindakan_dicoba" value="53" />
-                        <label class="form-check-label" for="exampleCheck1">Tidak Yakin/Tidak tahu (Saya
-                            melaporkan atas nama Orang lain)</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="tindakan_dicoba"
-                            id="tindakan_dicoba" value="54" />
-                        <label class="form-check-label" for="exampleCheck1">Tidak ada tindakan</label>
-                    </div>
+
+                    @for ($i = 0; $i < count($tindakan_dicoba); $i++)
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="layanan_dicoba[]"
+                                id="tindakan_dicoba-{{ $tindakan_dicoba[$i] }}" value="{{ $tindakan_dicoba[$i] }}" />
+                            <label class="form-check-label" for="exampleCheck1">{{ $tindakan_dicoba[$i] }}</label>
+                        </div>
+                    @endfor
+
+
                     <input type="text" placeholder="lainnya ..." class="form-control" name="tindakan_lainnya"
                         value="" />
                 </div><br />
@@ -181,8 +114,8 @@
                     </p>
                 </div>
                 <div class="f1-buttons float-end mt-4 mb-4">
-                    <button type="button" id="button-back" name="previous_button"
-                        class="btn btn-warning btn-previous"><i class="fa fa-arrow-left"></i>
+                    <button type="button" id="button-back" name="previous_button" class="btn btn-warning btn-previous"><i
+                            class="fa fa-arrow-left"></i>
                         Sebelumnya</button>
                     <button type="submit" class="btn btn-primary btn-next">Selanjutnya <i
                             class="fa fa-arrow-right"></i></button>

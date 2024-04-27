@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function login(){
-        return view('login.login', ["title" => "Login Admin",
-        "active" => 'Login Admin',
-    ]);
+        return view('login.login', [
+            "title" => "Login Admin",
+            "active" => 'Login Admin',
+        ]);
     }
     
     public function authenticate(Request $request) 
@@ -20,6 +21,18 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
+        // Lakukan pengecekan status pengguna sebelum login
+        $user = \App\Models\User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->with('loginError','Email atau Password salah!');
+        }
+
+        if ($user->activation_status === 'inactive') {
+            Auth::logout();
+            return back()->with('loginError', 'Akun Anda dinonaktifkan. Silahkan Hubungi admin untuk aktivasi.');
+        }
+
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');
@@ -27,10 +40,9 @@ class LoginController extends Controller
         return back()->with('loginError','Email atau Password salah!');
     }
     
-    public function logout() {
+    public function logout()
+    {
         Auth::logout();
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
         return redirect('/login');
     }
 }

@@ -5,8 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
-class IsAdmin
+class RedirectIfPending
 {
     /**
      * Handle an incoming request.
@@ -15,9 +16,11 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user() && auth()->user()->is_admin !== 'admin') {
-            abort(403);
+        // Periksa apakah pengguna masuk dan statusnya 'pending'
+        if (Auth::check() && Auth::user()->status === 'pending') {
+            return redirect('/pending');
         }
+        
         return $next($request);
     }
 }
