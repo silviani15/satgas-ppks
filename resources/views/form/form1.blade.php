@@ -52,10 +52,21 @@
     <form action="/laporkan" method="POST">
         @csrf
         <fieldset>
+            <div class="alert alert-warning">
+                <p>Catatan Penting:</p>
+                <p>Jika ada <span class="text-danger">*</span> maka wajib untuk diisi!</p>
+            </div>
+            <div class="f1-buttons float-end mt-4 mb-4">
+                <button type="button" id="button-back" name="previous_button" class="btn btn-warning btn-previous"><i
+                        class="fa fa-arrow-left"></i>
+                    Sebelumnya</button>
+                <button type="submit" class="btn btn-primary btn-next">Selanjutnya <i
+                        class="fa fa-arrow-right"></i></button>
+            </div>
             <div class="alert bg-light">
                 <hr />
                 <div class="form-group mt-3">
-                    <label for="apakah_pkamu">Apakah kamu ? <small class="text-danger">*</small></label>
+                    <label for="apakah_pkamu">Apakah kamu ? <span class="text-danger">*</span></label>
                     <select name="apakah_kamu" id="apakah_kamu" class="form-control mt-1 required">
                         <option value="" selected disabled>- pilih -</option>
                         <option value="Individu yang pernah mengalami sebuah insiden pelecahan seksual">Individu yang pernah
@@ -82,7 +93,7 @@
                 </div>
                 <div class="form-group mt-3">
                     <label for="individu_terkena_dampak">Individu yang terkena dampak pelecehan seksual
-                        merupakan? <small class="text-danger">*</small></label>
+                        merupakan? <span class="text-danger">*</span></label>
                     <select name="individu_terkena_dampak" id="individu_terkena_dampak" class="form-control mt-1 required">
                         <option value="">- pilih -</option>
                         <option value="Bagian dari UKDW (Misalnya : Tamu, Pegawai Kantin, Tukang di lingkungan UKDW)">Bagian
@@ -103,7 +114,7 @@
                         berhubungan dengan UKDW
                         (Misal terjadi di kampus UKDW atau Organisasi Mahasiswa UKDW atau selama
                         beraktivitas di UKDW seperti Studi Banding atau Magang)?
-                        <small class="text-danger">*</small></label>
+                        <span class="text-danger">*</span></label>
                     <select name="berhubungan_dengan_ukdw" id="berhubungan_dengan_ukdw" class="form-control mt-1 required">
                         <option value="">- pilih -</option>
                         <option value="Ya">Ya</option>

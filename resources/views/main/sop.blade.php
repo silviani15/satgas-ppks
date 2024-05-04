@@ -3,14 +3,7 @@
 <link rel="stylesheet" href="css/index.css" />
 
 <body>
-    <nav class="breadcrumb" aria-label="breadcrumb" style="margin-top: 6%">
-        <ul>
-            <li><a href="/">Beranda</a></li>
-            <li class="activess" aria-current="page">SOP</li>
-        </ul>
-    </nav>
-    <hr>
-
+    <br><br><br><br>
     <div style="text-align: center">
         <div class="content">
             <div class="title-container" style="margin-left: 250px">
@@ -18,9 +11,9 @@
                 <h1 class="title">SOP PENANGANAN LAPORAN KEKERASAN SEKSUAL</h1>
             </div>
             <hr class="separator"
-                style="max-width: 900px; margin-left: 245px; margin-top: 5px; border-top: 2px solid #007663" />
-            <img src="{{ asset('img/coba1.png') }}" alt="" />
+                style="max-width: 1000px; margin-left: 245px; margin-top: 5px; border-top: 2px solid #007663" />
+            <img src="{{ asset('img/profil/sop.png') }}" alt="Struktur Organisasi">
         </div>
-    </div>
+    </div><br>
     @include('main.footer')
 </body>

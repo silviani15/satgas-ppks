@@ -20,22 +20,22 @@
                         <tr>
                             <td width="20%">Penyelenggara</td>
                             <td width="2%">:</td>
-                            <td>{{ $program['penyelenggara'] }}</td>
+                            <td>{{ $program['Penyelenggara'] }}</td>
                         </tr>
                         <tr>
                             <td width="20%">Lokasi</td>
                             <td width="2%">:</td>
-                            <td>{{ $program['lokasi'] }}</td>
+                            <td>{{ $program['Lokasi'] }}</td>
                         </tr>
                         <tr>
                             <td width="20%">Waktu</td>
                             <td width="2%">:</td>
-                            <td>{{ $program['waktu'] }}</td>
+                            <td>{{ $program['Waktu'] }}</td>
                         </tr>
                         <tr>
                             <td width="20%">Uraian</td>
                             <td width="2%">:</td>
-                            <td>{{ $program['uraian'] }}</td>
+                            <td>{{ $program['Uraian'] }}</td>
                         </tr>
                     </table><br>
                 </div>

@@ -15,6 +15,21 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Edit Petugas</h1>
     </div>
+
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </div>
+    @endif
+
     <div class="col-lg-8">
         <form method="POST" action="{{ url('/dashboard/petugas/' . $petugas->id . '/reset-password') }}" class="mb-5"
             enctype="multipart/form-data">
@@ -24,7 +39,6 @@
             <input type="hidden" value="{{ $petugas->id }}" name="id">
 
             <div class="modal-body">
-
                 <h4><label for="new_password" class="form-label">New Password</label></h4>
                 <p>Silahkan klik Reset Password</p>
                 <input type="text" class="form-control" id="new_password" name="new_password" required>

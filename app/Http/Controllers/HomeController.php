@@ -71,11 +71,11 @@ class HomeController extends Controller
     //     return view('program', ["title" => "Program Satgas"]);
     // }
 
-    public function program(){
-        return view('main.program', ["title" => "Program Satgas",
-        "active" => 'Program Satgas',
-    ]);
-    }
+    // public function program(){
+    //     return view('main.program', ["title" => "Program Satgas",
+    //     "active" => 'Program Satgas',
+    // ]);
+    // }
 
     public function laporkan(){
         return view('form.form1', ["title" => "Laporkan!",
@@ -89,11 +89,11 @@ class HomeController extends Controller
     // ]);
     // }
 
-    public function materi(){
-        return view('main.materi', ["title" => "Materi Satgas",
-        "active" => 'Materi Satgas',
-    ]);
-    }
+    // public function materi(){
+    //     return view('main.materi', ["title" => "Materi Satgas",
+    //     "active" => 'Materi Satgas',
+    // ]);
+    // }
     
     public function hubungi(){
         return view('main.hubungi', ["title" => "Hubungi Kami",

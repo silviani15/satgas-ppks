@@ -53,27 +53,25 @@
             <div class="alert bg-light">
                 <hr />
                 <div class="form-group mt-3">
-                    <label for="tempat_insiden">Dimana insiden pelecehan tersebut terjadi ? <small
-                            class="text-danger">*</small></label>
+                    <label for="tempat_insiden">Dimana insiden pelecehan tersebut terjadi ? <span class="text-danger">*</span></label>
                     <select name="tempat_insiden" id="tempat_insiden" class="form-control mt-1 required">
                         <option value="">- pilih -</option>
+                        <option value="Gedung Agape">Gedung Agape</option>
+                        <option value="Gedung Biblos">Gedung Biblos</option>
+                        <option value="Gedung Chara">Gedung Chara</option>
+                        <option value="Gedung Didaktos">Gedung Didaktos</option>
+                        <option value="Gedung Eudia">Gedung Eudia</option>
+                        <option value="Gedung Filia">Gedung Filia</option>
+                        <option value="Gedung Gnosis">Gedung Gnosis</option>
+                        <option value="Gedung Hagios">Gedung Hagios</option>
+                        <option value="Gedung Iama">Gedung Iama</option>
+                        <option value="Gedung Koinonia">Gedung Koinonia</option>
+                        <option value="Gedung Makarios">Gedung Makarios</option>
+                        <option value="Gedung Logos">Gedung Logos</option>
                         <option value="Selama perjalanan (Misal. Mobil Online)">Selama perjalanan (Misal. Mobil Online)</option>
-                        <option value="Selama kegiatan diluar Kampus UKDW">Selama kegiatan diluar Kampus UKDW</option>
-                        <option value="Diluar lingkungan kampus dan sedang tidak ada kegiatan apapun di UKDW">Diluar lingkungan kampus dan sedang tidak ada kegiatan apapun di UKDW
-                        </option>
-                        <option value="Saat mengikuti kegiatan UKDW diluar lingkungan kampus">Saat mengikuti kegiatan UKDW diluar lingkungan kampus</option>
-                        <option value="Saat di Transportasi Publik">Saat di Transportasi Publik</option>
+                        <option value="Selama kegiatan diluar Kampus UKDW (Misal. Studi banding, Magang, KKN)">Selama kegiatan diluar Kampus UKDW (Misal. Studi banding, Magang, KKN)</option>
+                        <option value="Diluar lingkungan kampus dan sedang tidak ada kegiatan apapun di UKDW">Diluar lingkungan kampus dan sedang tidak ada kegiatan apapun di UKDW</option>
                         <option value="Sosial Media (Online)">Sosial Media (Online)</option>
-                        <option value="Saat Perjalanan Pribadi">Saat Perjalanan Pribadi</option>
-                        <option value="Perjalanan yang diatur oleh UKDW">Perjalanan yang diatur oleh UKDW</option>
-                        <option value="Perjalanan yang beruhubungan dengan UKDW">Perjalanan yang beruhubungan dengan UKDW</option>
-                        <option value="UKDW Yogyakarta">UKDW Yogyakarta</option>
-                        <option value="Klinik UKDW">Klinik UKDW</option>
-                        <option value="Perpustakaan UKDW">Perpustakaan UKDW</option>
-                        <option value="Lapangan UKDW">Lapangan UKDW</option>
-                        <option value="Studi Banding UKDW">Studi Banding UKDW</option>
-                        <option value="Saat Magang di UKDW">Saat Magang di UKDW</option>
-                        <option value="Berbagi tempat / Kejadian">Berbagi tempat / Kejadian</option>
                         <option value="Tidak Yakin">Tidak Yakin</option>
                         <option value="Lainnya">Lainnya</option>
                     </select>
@@ -82,17 +80,14 @@
                     @endif
                 </div>
                 <div class="form-group mt-3">
-                    <label for="lokasi_kejadian">Apakah ada sesuatu yang ingin anda tambahkan mengenai Lokasi kejadian? Jika
-                        kamu memilih "Berbagai tempat/kejadian", tolong sebutkan tempat/kejadiannya? <small
-                            class="text-danger">*</small></label>
+                    <label for="lokasi_kejadian">Apakah ada sesuatu yang ingin anda tambahkan mengenai detail Lokasi kejadian? tolong sebutkan tempat/kejadiannya? <span class="text-danger">*</span></label>
                     <textarea name="lokasi_kejadian" id="lokasi_kejadian" class="form-control mt-1 required"></textarea>
                     @if ($errors->has('lokasi_kejadian'))
                         <div class="alert alert-danger">Field is required.</div>
                     @endif
                 </div>
                 <div class="form-group mt-3">
-                    <label for="waktu_peristiwa">Kapan peristiwa pelecehan tersebut terjadi : <small
-                            class="text-danger">*</small></label>
+                    <label for="waktu_peristiwa">Kapan peristiwa pelecehan tersebut terjadi : <span class="text-danger">*</span></label>
                     <p for="" class="text-justify">
                         Polisi menyarankan untuk melakukan pemeriksaan medis secara forensik dalam kurun
                         waktu 3x24 Jam setelah pelecehan tersebut terjadi (meskipun dapat dilakukan 1 minggu

@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\IsAdmin::class,
         'pending' => \App\Http\Middleware\RedirectIfPending::class,
         'petugas' => \App\Http\Middleware\PetugasMiddleware::class,
+        'checkTrackingCode' => \App\Http\Middleware\CheckTrackingCode::class,
     ];
 }

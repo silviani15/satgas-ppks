@@ -54,4 +54,12 @@ class Pengaduan extends Model
     {
         return $this->hasMany(Tanggapan::class);
     }
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        // Jika status_laporan tidak ditetapkan, gunakan default
+        $this->status_laporan = $this->status_laporan ?? 'Belum divalidasi';
+    }
 }

@@ -63,21 +63,22 @@
                 <div class="pdf-container">
                     <div class="pdf-item">
                         <img src="{{ asset('img/pdf.svg') }}" alt="PDF Icon" />
-                        <p>Judul Materi PDF 1</p>
+                        <p>Anggota Satuan Tugas PPKS UKDW</p>
                         <a href="#" class="download-btn">Download</a>
                     </div>
                     <div class="pdf-item">
                         <img src="{{ asset('img/pdf.svg') }}" alt="PDF Icon" />
-                        <p>Judul Materi PDF 2</p>
+                        <p>Buku Panduan Kebijakan Kebijakan Anti Kekerasan Seksual UKDW</p>
                         <a href="#" class="download-btn">Download</a>
                     </div>
                     <div class="pdf-item">
                         <img src="{{ asset('img/pdf.svg') }}" alt="PDF Icon" />
-                        <p>Judul Materi PDF 3</p>
+                        <p>Media Sosial</p>
                         <a href="#" class="download-btn">Download</a>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
     @include('main.footer')
 </body>

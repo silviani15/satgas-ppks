@@ -6,27 +6,33 @@ use Illuminate\Http\Request;
 
 class ProgramController extends Controller
 {
+    public function program(){
+        return view('main.program', ["title" => "Program Satgas",
+        "active" => 'Program Satgas',
+    ]);
+    }
+    
     public function showDetail($id)
     {
         // Menentukan data program secara langsung
         $programs = [
             [
-                'penyelenggara' => 'Kementerian Pendidikan dan Kebudayaan, Riset, Dan Teknologi',
-                'lokasi' => 'DKI Jakarta',
-                'waktu' => '03 October 2023',
-                'uraian' => 'RAPAT KOORDINASI NASIONAL SATUAN TUGAS PENCEGAHAN DAN PENANGANAN KEKERASAN SEKSUAL'
+                'Penyelenggara' => 'Koordinator Nasional PPKS',
+                'Lokasi' => 'DKI Jakarta',
+                'Waktu' => '03 October 2023',
+                'Uraian' => 'Koordinasi Nasional PPKS bersama Bapak Menteri Pendidikan,Kebudayaan,Riset dan Teknologi Republik Indonesia'
             ],
             [
-                'penyelenggara' => 'Kementerian Pariwisata dan Ekonomi Kreatif',
-                'lokasi' => 'Bali',
-                'waktu' => '10 November 2023',
-                'uraian' => 'Pameran Pariwisata Nasional 2023'
+                'Penyelenggara' => 'SATGAS PPKS DI RANGKAIAN OKA',
+                'Lokasi' => 'Universitas Kristen Duta Wacana',
+                'Waktu' => '22 Maret 2024',
+                'Uraian' => 'Satuan Tugas Pencegahan dan Penanganan Kekerasan Seksual UKDW memberikan pemahaman untuk mencegah kekerasan seksual demi untuk #ukdwkampusaman'
             ],
             [
-                'penyelenggara' => 'Satgas UKDW',
-                'lokasi' => 'Yogyakarta',
-                'waktu' => '10 Juni 2023',
-                'uraian' => 'Ngevlog'
+                'Penyelenggara' => 'SATGAS PPKS UKDW DAN SATGAS PPKS UAJY',
+                'Lokasi' => 'Yogyakarta',
+                'Waktu' => '10 Juni 2023',
+                'Uraian' => 'Mengadakan lomba video pendek "Women Support Women", Tujuannya Meningkatkan kesadaran tentang kekerasan seksual di lingkungan kampus melalui pesan yang kuat dan menyentuh dalam video. '
             ],
         ];
         

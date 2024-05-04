@@ -53,7 +53,7 @@ class DashboardPostController extends Controller
 
         Post::create($validatedData);
 
-        return redirect('/dashboard/artikel')->with('success', 'New post has been added!');
+        return redirect('/dashboard/artikel')->with('success', 'New Artikel has been added!');
     }
   
     /**
@@ -121,7 +121,7 @@ class DashboardPostController extends Controller
         }
         Post::destroy($artikel->id);
 
-        return redirect('/dashboard/artikel')->with('danger', 'Post has been deleted!');
+        return redirect('/dashboard/artikel')->with('danger', 'Artikel has been deleted!');
     }
     public function checkSlug(Request $request)
     {

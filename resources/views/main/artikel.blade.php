@@ -1,4 +1,5 @@
 @extends('layout.main')
+<link rel="icon" href="{{ asset('img/logoukdw.png') }}" type="image/icontype" />
 <style>
     .navbar {
         padding-right: 13% !important;
@@ -10,15 +11,10 @@
 </style>
 
 <section>
-    <nav class="breadcrumb" aria-label="breadcrumb" style="margin-top: 6%">
-        <ul>
-            <li><a href="/">Beranda</a></li>
-            <li class="activess" aria-current="page">Artikel</li>
-        </ul>
-    </nav>
+    <br><br><br><br>
 </section>
 
-@section('container')
+<div class="containerw">
     <h1 class="mb-3 text-center">{{ $title }}</h1>
 
     <div class="row justify-content-center mb-3">
@@ -39,89 +35,93 @@
         </div>
     </div>
 
-    @if ($artikel->count())
-        <div class="card mb-3">
-            @if ($artikel[0]->image)
-                <div style="max-height: 400px; overflow:hidden;">
-                    <img src="{{ asset('storage/' . $artikel[0]->image) }}" alt="{{ $artikel[0]->category->name }}"
-                        class="img-fluid">
+    <div class="card mb-3" style="margin-left: 7%; margin-right: 7%;">
+        @if ($artikel->count())
+            <div class="card mb-3">
+                @if ($artikel[0]->image)
+                    <div style="max-height: 400px; overflow:hidden;">
+                        <img src="{{ asset('storage/' . $artikel[0]->image) }}" alt="{{ $artikel[0]->category->name }}"
+                            class="img-fluid">
+                    </div>
+                @else
+                    <img src="https://source.unsplash.com/1200x400?{{ $artikel[0]->category->name }}"
+                        class="card-img-top" alt="{{ $artikel[0]->category->name }}">
+                @endif
+
+
+                <div class="card-body text-center">
+                    <h3 class="card-title"><a href="/artikel/{{ $artikel[0]->slug }}"
+                            class="text-decoration-none text-dark">{{ $artikel[0]->title }}</a></h3>
+                    <p>
+                        <small class="text-muted">
+                            By. <a href="/authors/{{ $artikel[0]->author->username }}"
+                                class="text-decoration-none">{{ $artikel[0]->author->name }}</a>
+                            in <a href="/categories/{{ $artikel[0]->category->slug }}"
+                                class="text-decoration-none">{{ $artikel[0]->category->name }}</a>
+                            {{ $artikel[0]->created_at->diffForHumans() }}
+                        </small>
+                    </p>
+                    <p class="card-text">{{ $artikel[0]->excerpt }}</p>
+
+                    <a href="/artikel/{{ $artikel[0]->slug }}" class="text-decoration-none btn btn-primary">Read
+                        more</a>
                 </div>
-            @else
-                <img src="https://source.unsplash.com/1200x400?{{ $artikel[0]->category->name }}" class="card-img-top"
-                    alt="{{ $artikel[0]->category->name }}">
-            @endif
-
-
-            <div class="card-body text-center">
-                <h3 class="card-title"><a href="/artikel/{{ $artikel[0]->slug }}"
-                        class="text-decoration-none text-dark">{{ $artikel[0]->title }}</a></h3>
-                <p>
-                    <small class="text-muted">
-                        By. <a href="/authors/{{ $artikel[0]->author->username }}"
-                            class="text-decoration-none">{{ $artikel[0]->author->name }}</a>
-                        in <a href="/categories/{{ $artikel[0]->category->slug }}"
-                            class="text-decoration-none">{{ $artikel[0]->category->name }}</a>
-                        {{ $artikel[0]->created_at->diffForHumans() }}
-                    </small>
-                </p>
-                <p class="card-text">{{ $artikel[0]->excerpt }}</p>
-
-                <a href="/artikel/{{ $artikel[0]->slug }}" class="text-decoration-none btn btn-primary">Read more</a>
             </div>
-        </div>
 
 
-        <div class="container">
-            <div class="row">
-                @foreach ($artikel->skip(1) as $artikel)
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="position-absolute px-3 py-2" style="background-color: rgba(0,0,0,0.7)"><a
-                                    href="/categories/{{ $artikel->category->slug }}"
-                                    class="text-white text-decoration-none">{{ $artikel->category->name }}</a></div>
+            <div class="container">
+                <div class="row">
+                    @foreach ($artikel->skip(1) as $artikel)
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="position-absolute px-3 py-2" style="background-color: rgba(0,0,0,0.7)"><a
+                                        href="/categories/{{ $artikel->category->slug }}"
+                                        class="text-white text-decoration-none">{{ $artikel->category->name }}</a>
+                                </div>
 
-                            @if ($artikel->image)
-                                <img src="{{ asset('storage/' . $artikel->image) }}" alt="{{ $artikel->category->name }}"
-                                    class="img-fluid">
-                            @else
-                                <img src="https://source.unsplash.com/500x400?{{ $artikel->category->name }}"
-                                    class="card-img-top" alt="{{ $artikel->category->name }}">
-                            @endif
+                                @if ($artikel->image)
+                                    <img src="{{ asset('storage/' . $artikel->image) }}"
+                                        alt="{{ $artikel->category->name }}" class="img-fluid">
+                                @else
+                                    <img src="https://source.unsplash.com/500x400?{{ $artikel->category->name }}"
+                                        class="card-img-top" alt="{{ $artikel->category->name }}">
+                                @endif
 
 
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $artikel->title }}</h5>
-                                <p>
-                                    <small class="text-muted">
-                                        {{-- By. <a
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $artikel->title }}</h5>
+                                    <p>
+                                        <small class="text-muted">
+                                            {{-- By. <a
                                             href="/authors/{{ $artikel->author->username }}" class="text-decoration-none">{{ $artikel->author->name }}</a>
                                         {{ $artikel->created_at->diffForHumans() }} --}}
-                                        @if ($artikel->author)
-                                            By. <a href="/authors/{{ $artikel->author->username }}"
-                                                class="text-decoration-none">
-                                                {{ $artikel->author->name }}
-                                            </a>
-                                        @else
-                                            By. Author Tidak Diketahui
-                                        @endif
-                                        {{ $artikel->created_at->diffForHumans() }}
-                                    </small>
-                                </p>
-                                <p class="card-text">{{ $artikel->excerpt }}</p>
-                                <a href="/artikel/{{ $artikel->slug }}" class="btn btn-primary">Read more</a>
+                                            @if ($artikel->author)
+                                                By. <a href="/authors/{{ $artikel->author->username }}"
+                                                    class="text-decoration-none">
+                                                    {{ $artikel->author->name }}
+                                                </a>
+                                            @else
+                                                By. Author Tidak Diketahui
+                                            @endif
+                                            {{ $artikel->created_at->diffForHumans() }}
+                                        </small>
+                                    </p>
+                                    <p class="card-text">{{ $artikel->excerpt }}</p>
+                                    <a href="/artikel/{{ $artikel->slug }}" class="btn btn-primary">Read more</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
-    @else
-        <p class="text-center fs-4">No post found.</p>
-    @endif
+        @else
+            <p class="text-center fs-4">No post found.</p>
+        @endif
+    </div>
 
     {{-- <div class="d-flex justify-content-end">
         {{ $artikel->links() }}
     </div> --}}
 
     @include('main.footer')
-@endsection
+</div>

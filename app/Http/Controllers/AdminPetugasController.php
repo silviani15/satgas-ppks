@@ -80,20 +80,56 @@ class AdminPetugasController extends Controller
     }
 
     public function resetPassword(Request $request) {
+
+        // echo "<pre>";
+        // print_r($request->id);
+        // die();
+        // echo "</pre>";
         $request->validate([
             'new_password' => 'required|string|min:8',
         ]);
 
         $petugas = Petugas::find($request->id);
+        // echo "<pre>";
+        // print_r($request->id);
+        // print_r($petugas);
+        // die();
+        // echo "</pre>";
         try {
             if ($request->filled('new_password')) {
                 $petugas->password = Hash::make($request->new_password);
                 $petugas->save();
+                // echo "masuk";
+                // die();
+            }else{
+                // echo "mati";
+                // die();
+
             }
             return redirect('/dashboard/petugas')->with('success', 'Password petugas berhasil direset.');
         } catch (\Exception $e) {
+            echo "error";
+            die();
             return redirect('/dashboard/petugas')->with('error', 'Terjadi kesalahan saat mereset password.');
         }
+        return redirect('/dashboard/petugas');
+        // $petugas = User::findOrFail($request->id); // Gunakan User, bukan Petugas
+        
+        // // Hash dan simpan kata sandi yang baru
+        // $petugas->password = Hash::make($request->new_password);
+        // $petugas->save();
+        
+        // return redirect('/dashboard/petugas')->with('success', 'Password petugas berhasil direset.');
+
+        // try {
+        //     $user = User::findOrFail($request->id);
+        //     $user->password = Hash::make($request->new_password);
+        //     $user->save();
+            
+        //     return redirect('/dashboard/petugas')->with('success', 'Password petugas berhasil direset.');
+        // } catch (\Exception $e) {
+        //     return redirect('/dashboard/petugas')->with('error', 'Terjadi kesalahan saat mereset password.');
+        // }
     }
 
     /**

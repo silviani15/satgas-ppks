@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
+use App\Models\Tanggapan;
 
 class AdminPengaduanController extends Controller
 {
@@ -59,7 +60,9 @@ class AdminPengaduanController extends Controller
     {
         // $id = intval($id); 
         $pengaduan = Pengaduan::findOrFail($id);
-        return view('dashboard.pengaduan.show', compact('pengaduan'));
+        $tanggapan = Tanggapan::where('pengaduan_id', $pengaduan->id)->orderBy('created_at', 'desc')->get();
+
+    return view('dashboard.pengaduan.show', compact('pengaduan', 'tanggapan'));
     }
 
     public function statusOnchange($id) 
@@ -133,6 +136,34 @@ class AdminPengaduanController extends Controller
 
         // Redirect dengan pesan flash
         return redirect()->route('pengaduan.index')->with('danger', 'Pengaduan berhasil ditolak dan dianggap selesai.');
+    }
+
+    public function exportPDF()
+    {
+        // $pengaduan = Pengaduan::all();
+        // return view('dashboard.exportPDF.index', compact('pengaduan'));
+    }
+
+    public function updateStatus(Request $request, $id) {
+        // Temukan pengaduan berdasarkan ID
+        $pengaduan = Pengaduan::findOrFail($id);
+    
+        // Mendapatkan nilai dari request
+        $status = $request->input('status'); // Nilai status dari request
+    
+        if ($status == "KS") {
+            // Jika statusnya KS, maka ubah ke "Kekerasan Seksual"
+            $pengaduan->status_laporan = "Kekerasan Seksual";
+            // Lakukan aksi tambahan, misalnya, kirim ke proses selanjutnya
+        } else {
+            // Jika bukan KS, maka dianggap ditolak
+            $pengaduan->status_laporan = "Bukan KS";
+            // Lakukan aksi tambahan untuk pengaduan yang ditolak
+        }
+    
+        $pengaduan->save(); // Simpan perubahan
+    
+        return redirect()->back()->with('success', 'Status pengaduan berhasil diperbarui.');
     }
 
 }

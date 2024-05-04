@@ -25,6 +25,7 @@
             @endif
             <main class="form-signin">
                 <h1 class="h3 mb-3 fw-normal text-center"><b>Please Login</b></h1>
+                <h5 class="h6 mb-3 fw-normal text-center"><span class="text-danger"> *</span>Login Khusus Petugas Satgas PPKS UKDW</h5>
                 <form action="/login" method="post">
                     @csrf
                     <div class="form-floating">
@@ -46,7 +47,6 @@
                     <button class="btn w-100 py-2" style="background-color: #04372E; color: #EBFEFE"
                         type="submit">Login</button>
                 </form>
-                <small>*Login Khusus Admin</small><br>
                 <small class="d-block text-center mt-3">Not Registered? <a href="/register" style="color: #007663">Register
                         Now!</a></small>
             </main>

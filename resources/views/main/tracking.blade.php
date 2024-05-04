@@ -1,14 +1,7 @@
 @extends('layout.main')
 
 <body>
-    <nav class="breadcrumb" aria-label="breadcrumb" style="margin-top: 6%">
-        <ul>
-            <li><a href="/">Beranda</a></li>
-            <li class="activess" aria-current="page">Tracking Aduan</li>
-        </ul>
-    </nav>
-
-    <hr />
+    <br><br><br><br>
     <section>
         <section id="hero" class="d-flex flex-column justify-content-center align-items-center"
             style="height: 15vh !important;">
@@ -17,10 +10,21 @@
             </div>
         </section>
         <main id="main">
-            <section class="">
+            <section class="container">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+    
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <div class="container mb-4">
-                    <form action="#" method="POST">
-                    <input type="hidden" name="_token" value="">
+                    <form action="/tracking/detailtracking" method="GET">
+                        <input type="hidden" name="_token" value="">
                         <div class="form-group">
                             <label for="">Silakan masukkan kode aduan yang anda dapatkan saat melakukan
                                 pelaporan. Kode
@@ -31,7 +35,7 @@
                         </div>
                         <br>
                         <div class="float-end">
-                            <a href="/tracking/detailtracking" class="btn btn-primary" type="submit">Cari aduan</a>
+                            <button class="btn btn-primary" type="submit">Cari aduan</button>
                         </div>
                     </form><br>
                 </div>

@@ -194,40 +194,54 @@ class LaporkanController extends Controller
 
     public function verifyOTP(Request $request)
     {
-    $kode_otp = $request->input('kode_otp');
-    $otp_dikirim = Session::get('otp');
+        $kode_otp = $request->input('kode_otp');
+        $otp_dikirim = Session::get('otp');
 
-    // Memeriksa apakah kode OTP yang dimasukkan sesuai dengan yang dikirimkan
-    if ($otp_dikirim && $kode_otp == $otp_dikirim) {
-        // Jika cocok, lanjutkan ke langkah selanjutnya
-        $valid_until = now()->addMinutes(1);
-        $kode_tracking = $this->generateTrackingCode();
-
-        // Kirim email kode tracking
-        try {
+        // Memeriksa apakah kode OTP yang dimasukkan sesuai dengan yang dikirimkan
+        if ($otp_dikirim && $kode_otp == $otp_dikirim) {
+            // Jika cocok, lanjutkan ke langkah selanjutnya
+            $valid_until = now()->addMinutes(1);
+            $kode_tracking = $this->generateTrackingCode();
+            // return response()->json([
+            //     'success' => true,
+            //     'kode_tracking' => $kode_tracking
+            // ]);
+            
+            Session::put('kode_tracking', $kode_tracking);
             $email_pelapor = session('langkah_5_data.email_pelapor');
-            // Mail::raw("Kode Tracking Aduan Anda: $kode_tracking", function($message) use ($email_pelapor) {
-            //     $message->to($email_pelapor)->subject('Kode Tracking Aduan');
-            // });
 
-            $kode_tracking_data = ['kode_tracking' => $kode_tracking];
-            Mail::send('emails.kodTrack', $kode_tracking_data, function($message) use ($email_pelapor, $kode_tracking) {
-                $message->to($email_pelapor)->subject('SATGAS PPKS UKDW - Aduan Baru: ' . $kode_tracking);
-            });            
+            // Kirim email kode tracking
+            try {
+                // Mail::raw("Kode Tracking Aduan Anda: $kode_tracking", function($message) use ($email_pelapor) {
+                //     $message->to($email_pelapor)->subject('Kode Tracking Aduan');
+                // });
+
+                $kode_tracking_data = ['kode_tracking' => $kode_tracking];
+                Mail::send('emails.kodTrack', $kode_tracking_data, function($message) use ($email_pelapor, $kode_tracking) {
+                    $message->to($email_pelapor)->subject('SATGAS PPKS UKDW - Aduan Baru: ' . $kode_tracking);
+                }); 
+                
+                return response()->json([
+                    'success' => true,
+                    'kode_tracking' => $kode_tracking
+                ]);
+                                
+            } catch (\Exception $e) {
+                // Tangani kesalahan pengiriman email kode tracking
+                return redirect()->back()->with('error', 'Gagal mengirim email kode tracking.');
+            }
+
+            // Redirect ke halaman tracking dengan pesan sukses
+            // return redirect()->route('trackingAduan')->with('success', 'Berhasil mendapatkan kode trackingan.');
             
-            
-        } catch (\Exception $e) {
-            // Tangani kesalahan pengiriman email kode tracking
-            return redirect()->back()->with('error', 'Gagal mengirim email kode tracking.');
+        } else {
+            // Jika tidak cocok, kembalikan pesan error
+            // return redirect()->back()->with('error', 'Kode OTP tidak valid.');
+            return redirect()->back()->json([
+                'success' => false,
+                'message' => 'Kode OTP tidak valid.'
+            ]);
         }
-
-        // Redirect ke halaman tracking dengan pesan sukses
-        return redirect()->route('trackingAduan')->with('success', 'Berhasil mendapatkan kode trackingan.');
-        
-    } else {
-        // Jika tidak cocok, kembalikan pesan error
-        return redirect()->back()->with('error', 'Kode OTP tidak valid.');
-    }
     }
 
     private function generateTrackingCode() {
@@ -262,32 +276,11 @@ class LaporkanController extends Controller
         // // dd($request);
         // error_log("berhasi step 6");
 
-        // Setelah berhasil, buat kode tracking
-        $kode_tracking = $this->generateTrackingCode();
-
-        
-        // Simpan kode tracking ke dalam session
-        Session::put('kode_tracking', $kode_tracking);
-        
-        try {
-            $email_pelapor = session('langkah_5_data.email_pelapor');
-            $kode_tracking_data = ['kode_tracking' => $kode_tracking];
-            
-            // dd($kode_tracking_data);
-
-            // Menggunakan template email 'emails.kodTrack' untuk mengirim kode pelacakan
-            Mail::send('emails.kodTrack', $kode_tracking_data, function($message) use ($email_pelapor, $kode_tracking) {
-                $message->to($email_pelapor)->subject('SATGAS PPKS UKDW - Aduan Baru: ' . $kode_tracking);
-            });
-            
-            // Redirect ke halaman tracking dengan pesan sukses
-            // return redirect()->route('trackingAduan')->with('success', 'Berhasil mendapatkan kode tracking.');
-        
-        } catch (\Exception $e) {
-            // Tangani kesalahan pengiriman email
-            return redirect()->back()->with('error', 'Gagal mengirim email kode tracking.');
+        $otp_disimpan = Session::get('otp');
+        if (!$otp_disimpan || $request->input('kode_otp') != $otp_disimpan) {
+            return redirect()->back()->with('error', 'Kode OTP tidak valid. Silakan coba lagi.'); 
         }
-    
+
         // if ($request->hasFile('file_lampiran')) {
         //     $validatedData['file_lampiran'] = $request->file('file_lampiran')->store('lampiran');
         // }
@@ -298,23 +291,11 @@ class LaporkanController extends Controller
         // }
         
         $Key1Data = session('langkah_1_data',[]);
-        // error_log($Key1Data);
-        // dd($Key1Data);
         $Key2Data = session('langkah_2_data',[]);
-        // error_log($Key2Data);
-        // dd($Key2Data);
         $Key3Data = session('langkah_3_data',[]);
-        // error_log($Key3Data);
-        // dd($Key3Data);
         $Key4Data = session('langkah_4_data',[]);
-        // error_log($Key4Data);
-        // dd($Key4Data);
         $Key5Data = session('langkah_5_data',[]);
-        // error_log($Key5Data);
-        // dd($Key5Data);
         $Key6Data = session('langkah_6_data',[]);
-        // error_log($Key6Data);
-        // dd($Key6Data);
         $mergedData = array_merge(
             $Key1Data,
             $Key2Data,
@@ -332,7 +313,7 @@ class LaporkanController extends Controller
         $mergedData["layanan_dicoba"] = $string_layanan_dicoba;
         $mergedData["tindakan_dicoba"] = $string_tindakan_dicoba;
         
-        // dd($mergedData);
+        // dd($mergedData); //ini nyoba aja
 
 
         $directory = 'lampiran';
@@ -344,7 +325,8 @@ class LaporkanController extends Controller
                 $nama_file = $file->getClientOriginalName();
                 // $validatedData['file_lampiran'] = $file->store($directory, 'public');
                 // $path = Storage::disk('public')->putFileAs($directory, $file, $nama_file);
-                $path = Storage::disk('public')->putFileAs('', $file, $nama_file);
+                $path = Storage::disk('public')->putFileAs('/lampiran,', $file, $nama_file);
+                
                 // $path = Storage::putFileAs($directory, $file, $nama_file);
                 // $mergedData['file_lampiran'] = $path;
                 error_log("Path: " . $path);
@@ -358,7 +340,7 @@ class LaporkanController extends Controller
     Pengaduan::create($mergedData);
 
     // Redirect pengguna ke halaman tracking setelah aduan berhasil diproses
-    return redirect()->route('trackingAduan');
+    return redirect()->route('trackingAduan')->with('success', 'Aduan Anda berhasil dikirim.');
     }
 
     

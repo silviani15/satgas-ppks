@@ -21,6 +21,7 @@ use App\Models\User;
 use App\Models\CalenderEvent;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\PetugasMiddleware;
+use App\Http\Middleware\checkTrackingCode;
 
 Route::get('/homecoba', function () {
     return view('home');
@@ -45,8 +46,9 @@ Route::get('/pengantar', [HomeController::class, 'pengantar']);
 Route::get('/filosofi', [HomeController::class, 'filosofi']);
 Route::get('/struktur', [HomeController::class, 'struktur']);
 Route::get('/sop', [HomeController::class, 'sop']);
-Route::get('/program', [HomeController::class, 'program']);
+Route::get('/hubungi', [HomeController::class, 'hubungi']);
 
+Route::get('/program', [ProgramController::class, 'program']);
 Route::get('/program/{id}', [ProgramController::class, 'showDetail'])->name('program.detail');
 
 Route::get('/laporkan', [LaporkanController::class, 'storeStep1'])->name('langkah1');
@@ -73,18 +75,20 @@ Route::post('/verify-otp', [LaporkanController::class, 'verifyOTP'])->name('veri
 
 
 Route::get('/tracking', [TrackingController::class, 'tracking']);
-Route::get('/tracking-aduan', [TrackingController::class, 'index'])->name('trackingAduan'); //Hati hati ini masih sembarangan
-Route::get('/tracking/detailtracking', [TrackingController::class, 'detailtracking']);
+// Route::get('/tracking-aduan', [TrackingController::class, 'index'])->name('trackingAduan'); 
+// Route::get('/tracking-aduan', [TrackingController::class, 'index'])->middleware(checkTrackingCode::class);
 
-Route::get('/materi', [HomeController::class, 'materi']);
+Route::get('/tracking-aduan', [TrackingController::class, 'index'])->name('trackingAduan')->middleware(checkTrackingCode::class); 
+Route::get('/detailtracking', [TrackingController::class, 'detailtracking'])->name('detailTracking')->middleware(checkTrackingCode::class); 
+Route::get('/tracking/detailtracking', [TrackingController::class, 'detailtracking'])->name('detailTracking')->middleware(checkTrackingCode::class);
+
+Route::get('/materi', [MateriController::class, 'materi']);
 Route::get('/materi/detailmateri', [MateriController::class, 'detailmateri']);
 
 Route::get('/open-pdf/{filename}', function ($filename) {
   $path = public_path('pdf/' . $filename);
   return response()->file($path);
 })->name('openPdf');
-
-Route::get('/hubungi', [HomeController::class, 'hubungi']);
 
 Route::get('/artikel', [PostController::class, 'artikel']);
 Route::get('/artikel/{detailartikel:slug}', [PostController::class, 'show']);
@@ -139,9 +143,9 @@ Route::resource('/dashboard/artikel', DashboardPostController::class)->middlewar
 //   Route::resource('/dashboard/artikel', DashboardPostController::class);
 // });
 
-Route::resource('/dashboard/petugas', AdminPetugasController::class)->except('show')->middleware(['web', PetugasMiddleware::class, IsAdmin::class]);
-Route::get('/dashboard/petugas/toggle-status/{id}', [AdminPetugasController::class, 'toggleStatus'])->name('petugas.toggleStatus');
-Route::post('/dashboard/petugas/{id}/reset-password', [AdminPetugasController::class, 'resetPassword'])->middleware(['web', PetugasMiddleware::class, IsAdmin::class]);
+Route::resource('/dashboard/petugas', AdminPetugasController::class)->except('show')->middleware(['web', PetugasMiddleware::class, IsAdmin::class])->middleware('auth');
+Route::get('/dashboard/petugas/toggle-status/{id}', [AdminPetugasController::class, 'toggleStatus'])->name('petugas.toggleStatus')->middleware(IsAdmin::class)->middleware('auth');
+Route::post('/dashboard/petugas/{id}/reset-password', [AdminPetugasController::class, 'resetPassword'])->middleware(['web', PetugasMiddleware::class, IsAdmin::class])->middleware('auth');
 
 // Route::middleware([IsAdmin::class, PetugasMiddleware::class])->group(function () {
 //   Route::resource('/dashboard/petugas', AdminPetugasController::class)->except('show');
@@ -150,13 +154,25 @@ Route::post('/dashboard/petugas/{id}/reset-password', [AdminPetugasController::c
 //   Route::get('/dashboard/petugas/{id}/toggle-status', [AdminPetugasController::class, 'toggleStatus'])->name('petugas.toggleStatus');
 // });
 
-Route::resource('/dashboard/pengaduan', AdminPengaduanController::class);
-Route::get('/dashboard/pengaduan/{id}', [AdminPengaduanController::class, 'show'])->name('dashboard.pengaduan.show');
-Route::post('/petugas/statusOnchange/{id}', [AdminPengaduanController::class, 'statusOnchange'])->name('petugas.statusOnchange');
-Route::post('/dashboard/pengaduan/reject/{id}', [AdminPengaduanController::class, 'reject'])->name('pengaduan.reject');
+Route::resource('/dashboard/pengaduan', AdminPengaduanController::class)->middleware('auth');
+Route::get('/dashboard/pengaduan/{id}', [AdminPengaduanController::class, 'show'])->name('dashboard.pengaduan.show')->middleware('auth');
+Route::post('/petugas/statusOnchange/{id}', [AdminPengaduanController::class, 'statusOnchange'])->name('petugas.statusOnchange')->middleware('auth');
+// Route::post('/dashboard/pengaduan/reject/{id}', [AdminPengaduanController::class, 'reject'])->name('pengaduan.reject')->middleware('auth');
 
-Route::get('/dashboard/pengaduan/{pengaduan}/tanggapi', [TanggapanController::class, 'create'])->name('tanggapan.create');
-Route::post('/tanggapan', [TanggapanController::class, 'store'])->name('tanggapan.store');
+Route::get('/dashboard/pengaduan/{pengaduan}/tanggapi', [TanggapanController::class, 'create'])->name('tanggapan.create')->middleware('auth');
+Route::post('/tanggapan', [TanggapanController::class, 'store'])->name('tanggapan.store')->middleware('auth');
+
+// Route::get('/dashboard/pengaduan/{id}', [AdminPengaduanController::class, 'show']);
+// Route::get('/dashboard/pengaduan/export-pdf', [AdminPengaduanController::class, 'exportPDF'])
+//     ->middleware(['auth', 'IsAdmin'])
+//     ->name('pengaduan.exportPDF');
+
+Route::patch('/dashboard/pengaduan/{id}/update-status', [AdminPengaduanController::class, 'updateStatus'])->name('admin.updateStatus');
+
+
+Route::get('/dashboard/export-pdf', function() {
+  return view('dashboard.exportPDF.index');
+})->middleware(IsAdmin::class)->middleware('auth');
 
 
 // Route::get('/dashboard/pengaduan/{id}/tanggapi', [TanggapanController::class, 'create'])->name('tanggapan.create');

@@ -3,14 +3,7 @@
 <link rel="stylesheet" href="css/index.css" />
 
 <body>
-    <nav class="breadcrumb" aria-label="breadcrumb" style="margin-top: 6%">
-        <ul>
-            <li><a href="/">Beranda</a></li>
-            <li class="activess" aria-current="page">Hubungi Kami</li>
-        </ul>
-    </nav>
-    <hr class="separator" />
-
+    <br><br>
     <!------------------------------------------- A R T I C L E ------------------------------------------------------>
     <article class="article">
         <table class="table">
@@ -35,7 +28,7 @@
                 <td class="col-lg-6" style="padding-right: 0px; padding-left: 135px;">
                     <div class="col-12 d-flex align-items-center">
                         <img src="img/logoppks.png" alt="" width="45" height="45"
-                            class="mt-2 mb-2 bg-light">
+                            class="mt-2 mb-2 bg-light"><br>
                         <h6 class="text-uppercase mb-0 ms-2 custom-footer-caption">
                             <span class="d-block mb-1"
                                 style="font-weight: bold; font-size: 17px; margin-top: 15px">Satgas PPKS UKDW</span>
@@ -58,7 +51,7 @@
                         <p><i class="fa fa-phone" style="font-size:18px;"></i> +62 821-4368-8270</p>
                         <p><i class="fa fa-envelope" style="font-size:18px;"></i> ppks@staff.ukdw.ac.id</p>
                         <p><i class="fa fa-clock-o" style="font-size:18px;"></i> 08.00 - 15.00 WIB</p>
-                        <p>
+                        <p><br>
                         <h6 class="text-uppercase fw-bold mb-4">Sosial Media :</h6>
                         <a href="https://www.instagram.com/ppks.ukdw?igsh=dGN3dTY1dTIwNmtq" target="_blank"
                             class="me-4 text-reset"><i class="fa fa-instagram" style="font-size:40px;"></i></a>
@@ -72,14 +65,11 @@
                 </td>
             </tr>
         </table>
-
-
-
     </article>
     <!------------------------------------------- A R T I C L E ------------------------------------------------------>
 
     <!-- Copyright -->
-    <div class="text-center p-4 copyright-custom">
+    <div class="text-center p-4 copyright-custom" style="margin-top: -5%">
         © 2024 Copyright : Satgas Pencegahan Penanganan Kekerasan Seksual di Universitas Kristen Duta Wacana
     </div>
     </footer>

@@ -54,7 +54,7 @@
                 <hr />
                 <div>
                     <label for="layanan_dicoba">
-                        <p>Apakah anda pernah mencoba salah satu Layanan dibawah ini? <small class="text-danger">*</small>
+                        <p>Apakah anda pernah mencoba salah satu Layanan dibawah ini? <span class="text-danger">*</span>
                         </p>
                     </label>
 

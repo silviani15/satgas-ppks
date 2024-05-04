@@ -36,7 +36,7 @@
                         alt="{{ $artikel->category->name }}" class="img-fluid">
                 @endif
 
-                <article class="my-3 fs-5">
+                <article class="my-3 fs-5" style="text-align: justify;">
                     {!! $artikel->body !!}
                 </article>
 

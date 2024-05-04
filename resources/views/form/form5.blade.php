@@ -130,7 +130,7 @@
                         id="nomor_telepon_pelapor" value="" />
                 </div>
                 <div class="form-group mt-3">
-                    <label for="email_pelapor">Email<small class="text-danger">*</small></label>
+                    <label for="email_pelapor">Email Aktif untuk kirim kode OTP<span class="text-danger"> *</span></label>
                     <input type="email" class="form-control mt-1 required" data-error-message="Field is required."
                         placeholder="" name="email_pelapor" id="email_pelapor" value="" />
                     @if ($errors->has('email_pelapor'))

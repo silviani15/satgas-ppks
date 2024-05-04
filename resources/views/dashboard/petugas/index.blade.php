@@ -12,38 +12,45 @@
 @endsection
 
 @section('container')
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2"><b>Petugas</b></h1>
-    </div>
-
-    @if (session()->has('success'))
-        <div class="alert alert-success col-lg-10" role="alert">
-            {{ session('success') }}
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2"><b>Petugas</b></h1>
         </div>
-    @endif
 
-    <div class="table-responsive col-lg-10">
-        <a href="/dashboard/petugas/create" class="btn btn-primary mb-3"
-            style="margin-left:900px; background-color: #007663; color: #EBFEFE">Add Petugas</a>
-        <h5 class="h2">Daftar Petugas</h5>
-        <table class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Status Petugas</th>
-                    <th scope="col" style="text-align: center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($petugas as $petugas)
+        @if (session('danger'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('danger') }}
+            </div>
+        @endif
+
+        @if (session()->has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <div class="table-responsive">
+            <a href="/dashboard/petugas/create" class="btn btn-primary mb-3"
+                style="margin-left:90%; background-color: #007663; color: #EBFEFE">Add Petugas</a>
+            <h5 class="h2">Daftar Petugas</h5>
+            <table class="table table-striped table-sm">
+                <thead>
                     <tr>
-                        <td>{{ $petugas->name }}</td>
-                        <td>{{ $petugas->username }}</td>
-                        <td>{{ $petugas->email }}</td>
-                        {{-- <td>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Status Petugas</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($petugas as $petugas)
+                        <tr>
+                            <td>{{ $petugas->name }}</td>
+                            <td>{{ $petugas->username }}</td>
+                            <td>{{ $petugas->email }}</td>
+                            {{-- <td>
                             @if ($petugas->status === 'pending')
                                 <form action="{{ route('admin.users.approve', $petugas->id) }}" method="POST"
                                     class="d-inline">
@@ -58,16 +65,16 @@
                                 </form>
                             @endif
                         </td> --}}
-                        <td>{{ $petugas->is_admin === 'admin' ? 'Admin' : 'Petugas' }}</td>
-                        <td>{{ $petugas->activation_status }}</td>
+                            <td>{{ $petugas->is_admin === 'admin' ? 'Admin' : 'Petugas' }}</td>
+                            <td>{{ $petugas->activation_status }}</td>
 
-                        <td>
-                            {{-- <a href="#" class="badge bg-success"><i class="fa fa-check-circle-o"
+                            <td>
+                                {{-- <a href="#" class="badge bg-success"><i class="fa fa-check-circle-o"
                                     aria-hidden="true"></i></a>
                             <a href="#" class="badge bg-secondary"><i class="fa fa-times-circle-o"
                                     aria-hidden="true"></i></a> --}}
 
-                            {{-- @if ($petugas->activation_status === 'active')
+                                {{-- @if ($petugas->activation_status === 'active')
                                 <a href="{{ route('petugas.toggleStatus', $petugas->id) }}" class="badge bg-success">
                                     <i class="fa fa-check-circle-o" aria-hidden="true"></i>
                                 </a>
@@ -77,33 +84,34 @@
                                 </a>
                             @endif --}}
 
-                            @if ($petugas->activation_status === 'active')
-                                <a href="{{ route('petugas.toggleStatus', $petugas->id) }}" class="badge bg-secondary"
-                                    title="inactive">
-                                    <i class="fa fa-times-circle-o" aria-hidden="true"></i>
-                                </a>
-                            @else
-                                <a href="{{ route('petugas.toggleStatus', $petugas->id) }}" class="badge bg-success"
-                                    title="active">
-                                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-                                </a>
-                            @endif
+                                @if ($petugas->activation_status === 'active')
+                                    <a href="{{ route('petugas.toggleStatus', $petugas->id) }}" class="badge bg-secondary"
+                                        title="inactive">
+                                        <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('petugas.toggleStatus', $petugas->id) }}" class="badge bg-success"
+                                        title="active">
+                                        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                    </a>
+                                @endif
 
-                            <a href="/dashboard/petugas/{{ $petugas->id }}/edit?email={{ $petugas->email }}"
-                                class="badge bg-warning" title="Edit">
-                                <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
-                            </a>
-                            <form action="/dashboard/petugas/{{ $petugas->id }}" method="post" class="d-inline">
-                                @method('delete')
-                                @csrf
-                                <button class="badge bg-danger border-0" title="Delete" onclick="return confirm('Are you sure?')"><i
-                                        class="fa-solid fa-trash"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                                <a href="/dashboard/petugas/{{ $petugas->id }}/edit?email={{ $petugas->email }}"
+                                    class="badge bg-warning" title="Edit">
+                                    <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
+                                </a>
+                                <form action="/dashboard/petugas/{{ $petugas->id }}" method="post" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button class="badge bg-danger border-0" title="Delete"
+                                        onclick="return confirm('Are you sure?')"><i class="fa-solid fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection
 

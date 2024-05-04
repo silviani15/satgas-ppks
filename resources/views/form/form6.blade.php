@@ -20,6 +20,19 @@
             @endforeach
         </ul>
     @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if (session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="f1">
         <div class="f1-steps" style="margin-top: 10%">
             <div class="f1-progress">
@@ -68,18 +81,25 @@
                             menurut Anda dapat membantu). Bukti pendukung tidak lebih dari 10 Mb. Mohon unggah file
                             HANYA dalam bentuk PDF/JPEG/png/jpg/webp/rar/zip</label>
                         <input type="file" class="form-control mt-1" placeholder="masukan file anda" name="file_lampiran"
-                            id="file_lampiran"  multiple />
-                    </div>
+                            id="file_lampiran" multiple />
+                    </div><br>
                     <div class="form-group mt-3">
-                        <label for="kode_otp">Kode OTP <span class="text-info">(dikirim ke email yang telah
-                                anda isi pada langkah 5)</span><small class="text-danger">*</small></label>
+                        <label for="kode_otp">Kode OTP <span class="text-info">(dikirim ke email yang telah anda isi pada
+                                langkah 5)</span><span class="text-danger"> *</span></label>
+
+                        <p><br>Silahkan Klik 1 kali pada tombol minta OTP untuk pendapatkan kode OTP di Gmail <span
+                                class="text-danger"> *</span></p>
+                        <button type="button" id="kirim_otp_button" class="btn btn-primary w-100">Minta OTP</button>
+
+                        <p><br><span class="text-danger">*</span>Tunggu sampai ada pemberitahuan bahwa kode OTP telah
+                            dikirimkan melalui Email Anda.</p>
+                        <p>Silahkan Check Email Anda!</p>
 
                         <div class="input-group">
                             <input type="text" class="form-control required" placeholder="Masukkan kode OTP"
                                 name="kode_otp" id="kode_otp" aria-label="Recipient's username"
                                 aria-describedby="button-addon2">
                             {{-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">Kirim OTP</button> --}}
-                            <button type="button" id="kirim_otp_button" class="btn btn-primary">Kirim OTP</button>
                         </div>
 
                         @if ($errors->has('kode_otp'))
@@ -175,29 +195,48 @@
     const verifyOTPRoute = "{{ route('verify_otp') }}";
 
     document.addEventListener("DOMContentLoaded", function() {
+        console.log("Script loaded"); // Verifikasi apakah skrip berjalan
+
         const submitButton = document.getElementById("submit_button");
+        if (!submitButton) {
+            console.error("Button tidak ditemukan"); // Verifikasi elemen
+            return;
+        }
 
         submitButton.addEventListener("click", function() {
-            // Kirim permintaan AJAX untuk verifikasi OTP
-            fetch(verifyOTPRoute, {
+            console.log("Button clicked"); // Verifikasi klik berjalan
+            fetch('{{ route('verify_otp') }}', {
                     method: 'POST',
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    }
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        kode_otp: document.getElementById("kode_otp").value
+                    })
                 })
-                // Jika berhasil verifikasi OTP
                 .then(response => {
+                    console.log("Response received:", response); // Verifikasi respons
                     if (response.ok) {
-                        return response.json();
+                        return response.json(); // Harapkan JSON
+                    } else {
+                        throw new Error("Kode OTP tidak sesuai, silahkan check email anda kembali!");
                     }
-                    throw new Error('Gagal memverifikasi OTP.');
                 })
                 .then(data => {
-                    alert('Berhasil mendapatkan kode trackingan: ' + data.kode_tracking);
-                    window.location.href = '{{ route('trackingAduan') }}';
+                    console.log("Data received:", data); // Verifikasi data
+                    if (data.success) {
+                        alert("Berhasil mendapatkan kode trackingan: " + data.kode_tracking);
+                        setTimeout(function() {
+                            window.location.href = '{{ route('trackingAduan') }}';
+                        }, 1000); // Tambahkan jeda sebelum redirect
+                    } else {
+                        alert(data.message);
+                    }
                 })
                 .catch(error => {
-                    alert(error.message);
+                    console.error("Error:", error); // Penanganan kesalahan
+                    alert("Terjadi kesalahan: " + error.message);
                 });
         });
     });

@@ -1,6 +1,7 @@
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/dashboard">
-        <img src="{{ asset('/img/logoppks.png') }}" alt="Logo" class="img-fluid" width="20" height="10" style="background: white">
+        <img src="{{ asset('/img/logoppks.png') }}" alt="Logo" class="img-fluid" width="20" height="10"
+            style="background: white">
         <span class="align-middle mt-3">Satgas PPKS</span>
     </a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
@@ -23,9 +24,10 @@
         <div class="nav-item text-nowrap">
             <form id="logoutDash" action="/logout" method="post">
                 @csrf
-                <button type="button" class="nav-link px-3 bg-dark border-0" onclick="confirmLogout()">Logout<span data-feather="log-out"></span></button>
+                <button type="button" class="nav-link px-3 bg-dark border-0" onclick="confirmLogout()">Logout<span
+                        data-feather="log-out"></span></button>
             </form>
-            
+
             <script>
                 function confirmLogout() {
                     if (confirm("Apakah Anda yakin ingin keluar?")) {
@@ -33,9 +35,6 @@
                     }
                 }
             </script>
-
-
-
         </div>
     </div>
 </header>

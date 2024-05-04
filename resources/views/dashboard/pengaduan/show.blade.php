@@ -336,14 +336,12 @@
                                     @csrf
                                     <select name="status" class="form-control w-25" style="width: 180%!important"
                                         onchange="javascript:this.form.submit()">
-                                        <option value="0" @if ($pengaduan->status == 0) selected @endif>Belum divalidasi</option>
-                                        <option value="proses" @if ($pengaduan->status == 'proses') selected @endif>Proses
-                                        </option>
-                                        <option value="selesai" @if ($pengaduan->status == 'selesai') selected @endif>Selesai
-                                        </option>
+                                        <option style="" value="0" @if ($pengaduan->status == 0) selected @endif>--Untuk Mengubah Status--</option>
+                                        <option value="proses" @if ($pengaduan->status == 'proses') selected @endif>Proses</option>
+                                        <option value="selesai" @if ($pengaduan->status == 'selesai') selected @endif>Selesai</option>
                                     </select>
                                     <div class="input-group-append" name="status"
-                                        style="position: absolute; top: 94.8%; right: 75%;">
+                                        style="position: absolute; top: 89.2%; right: 65%;">
                                         <span class="text"><i class="fa fa-caret-down"></i></span>
                                     </div>
                                 </form>
@@ -357,7 +355,17 @@
                             <h4>Tanggapan</h4>
                         </div>
                         <div class="card-body">
-                            ini Tanggapan
+                            @if ($tanggapan->isEmpty())
+                                <p>Tidak ada tanggapan untuk pengaduan ini.</p>
+                            @else
+                                @foreach ($tanggapan as $item)
+                                    <div>
+                                        <strong>Tanggal:</strong> {{ $item->tgl_tanggapan }}<br>
+                                        <strong>Isi:</strong> {{ $item->tanggapan }}
+                                        <hr>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>

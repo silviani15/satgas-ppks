@@ -36,6 +36,7 @@ class TanggapanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    
     public function store(Request $request)
     {
         // echo "<pre>";
@@ -51,8 +52,11 @@ class TanggapanController extends Controller
         // ]);
 
         // dd('Form submitted', $request->all(), Auth::guard('petugas')->user());
+
+        $currentTime = Carbon::now('Asia/Jakarta');
+        
         $tanggapan = new Tanggapan();
-        $tanggapan->tgl_tanggapan = Carbon::now();
+        $tanggapan->tgl_tanggapan = $currentTime;
         $tanggapan->pengaduan_id = $request->input('pengaduan_id'); 
         $tanggapan->tanggapan = $request->input('tanggapan');
         $tanggapan->petugas_id = Auth::user()->id;
@@ -100,7 +104,6 @@ class TanggapanController extends Controller
     {
         Tanggapan::findOrFail($id)->delete();
 
-        return redirect()->route('dashboard.tanggapan.index')
-                         ->with('success', 'Tanggapan berhasil dihapus.');
+        return redirect()->route('dashboard.tanggapan.index')->with('success', 'Tanggapan berhasil dihapus.');
     }
 }

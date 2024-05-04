@@ -3,17 +3,12 @@
 <link rel="stylesheet" href="css/index.css" />
 
 <body>
-    <nav class="breadcrumb" aria-label="breadcrumb" style="margin-top: 6%">
-        <ul>
-            <li><a href="/">Beranda</a></li>
-            <li class="activess" aria-current="page">Struktur Organisasi</li>
-        </ul>
-    </nav>
-    <hr>
+    <hr><br><br><br>
 
-    <div style="text-align: center;">
-        <h1>Struktur Organisasi</h1>
-        <img src="{{ asset('img/coba1.png') }}" alt="">
+    <div style="text-align: center; padding-left: 20px; padding-right: 20px;">
+        <h1>Struktur Organisasi</h1><br>
+        <img src="{{ asset('img/profil/strukorg.png') }}" alt="Struktur Organisasi"
+            style="max-width: 100%; max-height: 400px; object-fit: contain;">
     </div><br>
     @include('main.footer')
 </body>
