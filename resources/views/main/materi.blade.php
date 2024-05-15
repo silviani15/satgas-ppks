@@ -1,42 +1,73 @@
 @extends('layout.main')
 @section('title', 'Materi Satgas PPKS UKDW')
-<link rel="stylesheet" href="css/index.css" />
+<link rel="stylesheet" href="css/materi.css" />
 
 <body>
     <br><br><br><br>
-    
+
     <h1 class="page-title" style="text-align: center"><b>Materi Satgas PPKS UKDW</b></h1>
-    <hr class="separator" />
-    <div class="card-container" style="text-align: center;">
-        <div class="card">
-            <div class="card-content" style="padding: 7px">
-                <img src="{{ asset('img/pdf.png') }}" alt="Gambar PDF" class="pdf-image"
-                    style="background-color: #EBFEFE" />
-                <h1 class="pdf-title">SK & Kebijakan UKDW</h1>
-                <p>SK & Kebijakan UKDW tentang Pencegahan dan Penanganan Kekerasan Seksual di Lingkungan UKDW</p>
-                <a href="{{ route('openPdf', 'sk_kebijakan.pdf') }}" class="detail-btn" target="_blank">Detail</a>
+    <hr class="separator" /><br>
+    <div class="card-container" style="padding-left:13%; padding-right: 13%;">
+        <div class="containera">
+            <div class="box">
+                <div class="background"></div>
+                <div class="text-section">
+                    <div class="sub-heading">SK & Kebijakan UKDW</div>
+                    <div class="main-text">SK & Kebijakan UKDW tentang Pencegahan dan Penanganan Kekerasan Seksual di
+                        Lingkungan UKDW</div>
+                </div>
+                <div class="image-box">
+                    <div class="image-background"></div>
+                    <div class="icon">
+                        <i class="bi bi-file-earmark-text-fill"></i>
+                    </div>
+                </div>
+                <div class="detail-button"><a href="{{ route('openPdf', 'sk_kebijakan.pdf') }}" class="detail-btn" style="color: aliceblue; text-decoration:none;"
+                    target="_blank">
+                    <div class="button-background"></div>
+                    <div class="button-text">Detail</div></a>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-content" style="padding: 5px">
-                <img src="{{ asset('img/pdf.png') }}" alt="Gambar PDF" class="pdf-image"
-                    style="background-color: #EBFEFE" />
-                <h1 class="pdf-title">Peraturan Perundangan</h1>
-                <p>Peraturan Perundang-undangan tentang Pencegahan dan Penanganan Kekerasan Seksual di Lingkungan
-                    Perguruan Tinggi</p>
-                <a href="{{ route('openPdf', 'peraturan_perundangan.pdf') }}" class="detail-btn" target="_blank">Detail</a>
+
+            <div class="box">
+                <div class="background"></div>
+                <div class="text-section">
+                    <div class="sub-heading">Peraturan Perundangan</div>
+                    <div class="main-text">Peraturan Perundang-undangan tentang Pencegahan dan Penanganan Kekerasan
+                        Seksual di Lingkungan Perguruan Tinggi</div>
+                </div>
+                <div class="image-box">
+                    <div class="image-background"></div>
+                    <div class="icon">
+                        <i class="bi bi-file-earmark-text-fill"></i>
+                    </div>
+                </div>
+                <div class="detail-button"><a href="{{ route('openPdf', 'peraturan_perundangan.pdf') }}"
+                    class="detail-btn" style="color: aliceblue; text-decoration:none;" target="_blank">
+                    <div class="button-background"></div>
+                    <div class="button-text">Detail</div></a>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-content" style="padding: 7px">
-                <img src="{{ asset('img/pdf.png') }}" alt="Gambar PDF" class="pdf-image"
-                    style="background-color: #EBFEFE" />
-                <h1 class="pdf-title">Materi Penting Lainnya</h1>
-                <p>Kumpulan Materi Penting tentang Pencegahan dan Penanganan Kekerasan Seksual</p>
-                <a href="/materi/detailmateri" class="detail-btn">Detail</a>
+
+            <div class="box">
+                <div class="background"></div>
+                <div class="text-section">
+                    <div class="sub-heading">Materi Penting lainnya</div>
+                    <div class="main-text">Kumpulan Materi Penting tentang Pencegahan dan Penanganan Kekerasan Seksual
+                    </div>
+                </div>
+                <div class="image-box">
+                    <div class="image-background"></div>
+                    <div class="icon">
+                        <i class="bi bi-file-earmark-text-fill"></i>
+                    </div>
+                </div>
+                <div class="detail-button"><a href="/materi/detailmateri" class="detail-btn" style="color: aliceblue; text-decoration:none;">
+                    <div class="button-background"></div>
+                    <div class="button-text">Detail</div></a>
+                </div>
             </div>
         </div>
     </div><br>
     @include('main.footer')
 </body>
-

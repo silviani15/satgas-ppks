@@ -42,9 +42,10 @@ class TrackingController extends Controller
     //     }
     // }
 
-    public function detailtracking(Request $request) {
-        $kode_tracking = $request->input('kode_aduan'); // Dapatkan kode tracking dari input
-        $pengaduan = Pengaduan::where('kode_tracking', $kode_tracking)->first(); // Cari pengaduan berdasarkan kode tracking
+    public function detailtracking(Request $request) 
+    {
+        $kode_tracking = $request->input('kode_aduan');
+        $pengaduan = Pengaduan::where('kode_tracking', $kode_tracking)->first(); 
 
         if (!$pengaduan) {
             return redirect()->back()->with('error', 'Data tidak ditemukan. Pastikan kode tracking benar.');

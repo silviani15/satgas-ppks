@@ -7,6 +7,9 @@
     <title>PPKS UKDW | Dashboard</title>
     <link rel="icon" href="{{ asset('img/logoukdw.png') }}" type="image/icontype" />
 
+    <link rel="manifest" href="/manifest.json">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -26,6 +29,11 @@
         }
     </style>
 
+    <!-- PWA  -->
+    <meta name="theme-color" content="#6777ef" />
+    <link rel="apple-touch-icon" href="{{ asset('ppks.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+
 </head>
 
 <body>
@@ -42,7 +50,70 @@
         </div>
     </div>
 
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/firebase-messaging-sw.js')
+                .then((registration) => {
+                    console.log("Service Worker terdaftar:", registration.scope);
+                })
+                .catch((error) => {
+                    console.error("Service Worker gagal terdaftar:", error);
+                });
+        }
+    </script>
+
+    <script>
+        Notification.requestPermission().then((permission) => {
+            if (permission === "granted") {
+                console.log("Izin notifikasi diberikan.");
+            } else {
+                console.warn("Izin notifikasi ditolak.");
+            }
+        });
+    </script>
+
+    <script>
+        if (Notification.permission !== 'granted') {
+            Notification.requestPermission().then((permission) => {
+                console.log('Izin notifikasi:', permission);
+            });
+        }
+    </script>
+
+    <script>
+        document.getElementById('request-notification').addEventListener('click', () => {
+            if (Notification.permission !== 'granted') {
+                Notification.requestPermission().then((permission) => {
+                    console.log('Izin notifikasi:', permission);
+                });
+            }
+        });
+    </script>
+
+    @vite(['resources/js/app.js'])
+
     @yield('scripts')
+
+    <div>
+        <script src="{{ asset('/sw.js') }}"></script>
+        <script>
+            if ("serviceWorker" in navigator) {
+                // Register a service worker hosted at the root of the
+                // site using the default scope.
+                navigator.serviceWorker.register("/sw.js").then(
+                    (registration) => {
+                        console.log("Service worker registration succeeded:", registration);
+                    },
+                    (error) => {
+                        console.error(`Service worker registration failed: ${error}`);
+                    },
+                );
+            } else {
+                console.error("Service workers are not supported.");
+            }
+        </script>
+    </div>
 
 </body>
 

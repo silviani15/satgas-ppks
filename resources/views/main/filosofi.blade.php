@@ -6,7 +6,7 @@
     <br><br><br><br>
 
     <h1 style="text-align: center"><b>Filosofi Logo</b></h1>
-    <hr />
+    <hr class="hr" />
     <section>
         <main id="main">
             <section class="about pt-4 mt-4" style="background-color: #ffffff !important;">

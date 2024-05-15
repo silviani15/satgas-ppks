@@ -53,7 +53,7 @@
                 <!-- Grid column 3 -->
                 <div class="col-md-3 col-lg-3 col-xl-5 mx-auto mb-md-0 mb-4 text-footer">
                     <!-- Google map -->
-                    <h>Detail Lokasi</h>
+                    <h><b>DETAIL LOKASI</b></h>
                     <div id="map-container-google-1" class="z-depth-1-half map-container" style="padding-top: 5px">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.0355566032536!2d110.37614270446878!3d-7.786054992201322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5828f6fb7ef7%3A0xb710cc588f40770e!2sUniversitas%20Kristen%20Duta%20Wacana!5e0!3m2!1sen!2sid!4v1708181353848!5m2!1sen!2sid"
@@ -64,10 +64,10 @@
             </div>
         </div>
         <!-- Copyright -->
-        <div class="text-center p-4 copyright-custom">© 2024 Copyright : Satgas Pencegahan Penanganan Kekerasan Seksual
-            di
-            Universitas Kristen Duta Wacana</div>
     </section>
+    <div class="text-center p-4 copyright-custom">© 2024 Copyright : Satgas Pencegahan Penanganan Kekerasan Seksual
+        di
+        Universitas Kristen Duta Wacana</div>
 
 </footer>
 

@@ -297,9 +297,9 @@
                                                     menurut Anda dapat membantu). Bukti pendukung tidak lebih dari 10 Mb.
                                                     Mohon unggah file
                                                     HANYA dalam bentuk PDF/JPEG/png/jpg/webp/rar/zip</p>
+                                                    <img src="{{ asset('storage/' . $pengaduan->file_lampiran) }}" alt="Bukti Lampiran"
+                                                        style="max-width: 100%; height: auto;">
                                                     @if ($pengaduan->file_lampiran && preg_match('/\.(jpeg|jpg|png|webp)$/i', $pengaduan->file_lampiran))
-                                                        <img src="{{ $pengaduan->file_lampiran }}" alt="Bukti Lampiran"
-                                                            style="max-width: 100%; height: auto;">
                                                     @else
                                                         <p>{{ $pengaduan->file_lampiran }}</p>
                                                     @endif
@@ -341,12 +341,12 @@
                                         <option value="selesai" @if ($pengaduan->status == 'selesai') selected @endif>Selesai</option>
                                     </select>
                                     <div class="input-group-append" name="status"
-                                        style="position: absolute; top: 89.2%; right: 65%;">
+                                        style="position: absolute; top: 94.6%; right: 65%;">
                                         <span class="text"><i class="fa fa-caret-down"></i></span>
                                     </div>
                                 </form>
                                 <a href="{{ route('tanggapan.create', ['pengaduan' => $pengaduan->id]) }}"
-                                    class="btn btn-primary">Tanggapi</a>
+                                    class="btn" style="background-color: #007663; color:aliceblue">Tanggapi</a>
                             </div>
                         </div>
                     </div>
@@ -354,13 +354,13 @@
                         <div class="card-header">
                             <h4>Tanggapan</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="text-align: justify;">
                             @if ($tanggapan->isEmpty())
                                 <p>Tidak ada tanggapan untuk pengaduan ini.</p>
                             @else
                                 @foreach ($tanggapan as $item)
                                     <div>
-                                        <strong>Tanggal:</strong> {{ $item->tgl_tanggapan }}<br>
+                                        <strong>Tanggal Tangggapan:</strong> {{ date('d-m-Y', strtotime($item->tgl_tanggapan)) }}<br>
                                         <strong>Isi:</strong> {{ $item->tanggapan }}
                                         <hr>
                                     </div>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Notifications\NewComplaintNotification;
 
 class Pengaduan extends Model
 {
@@ -62,4 +63,24 @@ class Pengaduan extends Model
         // Jika status_laporan tidak ditetapkan, gunakan default
         $this->status_laporan = $this->status_laporan ?? 'Belum divalidasi';
     }
+
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+
+    // protected static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::created(function ($pengaduan) {
+    //         // Get the list of admin/petugas to notify
+    //         $admins = User::where('is_admin', 'admin')->get();
+
+    //         // Notify each admin/petugas
+    //         foreach ($admins as $admin) {
+    //             $admin->notify(new NewComplaintNotification($pengaduan));
+    //         }
+    //     });
+    // }
 }

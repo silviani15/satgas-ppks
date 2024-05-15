@@ -13,8 +13,9 @@ use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\AdminPetugasController;
 use App\Http\Controllers\AdminPengaduanController;
 use App\Http\Controllers\TanggapanController;
+use App\Http\Controllers\TokenWebController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\SendEmailController;
+use App\Http\Controllers\PengaduanController;
 use Illuminate\Support\Facades\Route;
 use App\Models\category;
 use App\Models\User;
@@ -22,6 +23,8 @@ use App\Models\CalenderEvent;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\PetugasMiddleware;
 use App\Http\Middleware\checkTrackingCode;
+use App\Http\Middleware\ValidateTrackingCode;
+
 
 Route::get('/homecoba', function () {
     return view('home');
@@ -80,7 +83,8 @@ Route::get('/tracking', [TrackingController::class, 'tracking']);
 
 Route::get('/tracking-aduan', [TrackingController::class, 'index'])->name('trackingAduan')->middleware(checkTrackingCode::class); 
 Route::get('/detailtracking', [TrackingController::class, 'detailtracking'])->name('detailTracking')->middleware(checkTrackingCode::class); 
-Route::get('/tracking/detailtracking', [TrackingController::class, 'detailtracking'])->name('detailTracking')->middleware(checkTrackingCode::class);
+// Route::get('/tracking/detailtracking', [TrackingController::class, 'detailtracking'])->name('detailTracking')->middleware(checkTrackingCode::class);
+Route::get('/tracking/detailtracking', [TrackingController::class, 'detailtracking'])->middleware(ValidateTrackingCode::class);
 
 Route::get('/materi', [MateriController::class, 'materi']);
 Route::get('/materi/detailmateri', [MateriController::class, 'detailmateri']);
@@ -155,9 +159,14 @@ Route::post('/dashboard/petugas/{id}/reset-password', [AdminPetugasController::c
 // });
 
 Route::resource('/dashboard/pengaduan', AdminPengaduanController::class)->middleware('auth');
+Route::get('/dashboard/pengaduan', [AdminPengaduanController::class, 'index'])->name('admin.pengaduan.index')->middleware('auth');
 Route::get('/dashboard/pengaduan/{id}', [AdminPengaduanController::class, 'show'])->name('dashboard.pengaduan.show')->middleware('auth');
 Route::post('/petugas/statusOnchange/{id}', [AdminPengaduanController::class, 'statusOnchange'])->name('petugas.statusOnchange')->middleware('auth');
 // Route::post('/dashboard/pengaduan/reject/{id}', [AdminPengaduanController::class, 'reject'])->name('pengaduan.reject')->middleware('auth');
+
+Route::middleware(['auth'])->group(function () {
+  Route::post('/dashboard/pengaduan/rekomendasi/{id}', [AdminPengaduanController::class, 'rekomendasi'])->name('admin.pengaduan.rekomendasi');
+});
 
 Route::get('/dashboard/pengaduan/{pengaduan}/tanggapi', [TanggapanController::class, 'create'])->name('tanggapan.create')->middleware('auth');
 Route::post('/tanggapan', [TanggapanController::class, 'store'])->name('tanggapan.store')->middleware('auth');
@@ -180,3 +189,7 @@ Route::get('/dashboard/export-pdf', function() {
 // Rute untuk index tanggapan dengan ID pengaduan
 // Route::get('/dashboard/tanggapan/{pengaduan_id}', [TanggapanController::class, 'index'])->name('tanggapan.index');
 // Route::get('/dashboard/tanggapan/index', [TanggapanController::class, 'index'])->name('tanggapan.index');
+
+// Route::post('tokenweb', TokenWebController::class);
+Route::post('tokenweb', TokenWebController::class)->middleware('auth');
+// Route::post('/tokenweb', TokenWebController::class)->name('tokenweb')

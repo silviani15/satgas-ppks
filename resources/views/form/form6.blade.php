@@ -68,7 +68,7 @@
 
     <!-- step 6 -->
 
-    <form action="/submit-all" method="post">
+    <form action="/submit-all" method="post" enctype="multipart/form-data">
         @csrf
         <form action="{{ route('verify_otp') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -140,10 +140,11 @@
                         <input type="checkbox" name="agree_terms" class="form-check-input" id="exampleCheck1" required />
                         <label class="form-check-label" for="exampleCheck1" required><b>Saya Setuju dengan
                                 ketentuan di atas</b></label>
+                                <p style="text-align:right; background-color: #fff3cd; padding: 5px; margin: 0;">**Sebelum kirim aduan pastikan sudah menyetujui ketentuan disebelah kiri bawah</p>
                     </div>
                     <div id="submit_button" class="f1-buttons float-end mt-4 mb-4">
                         <button type="button" id="button-back" name="previous_button"
-                            class="btn btn-warning btn-previous"><i class="fa fa-arrow-left"></i>
+                            class="btn btn-previous" style="background-color: #BFB7AE;"><i class="fa fa-arrow-left"></i>
                             Sebelumnya</button>
                         <button for="dagree_terms" type="submit" class="btn btn-success btn-submit"><i
                                 class="fa fa-save"></i>

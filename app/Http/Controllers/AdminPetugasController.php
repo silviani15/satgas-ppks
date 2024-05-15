@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 
 class AdminPetugasController extends Controller
 {
@@ -16,6 +17,12 @@ class AdminPetugasController extends Controller
      */
     public function index()
     {
+        // $pengaduan = Pengaduan::get('');
+        
+        // Mail::send('emails.otp', ['otp' => $otp], function($message) use ($pengaduan) {
+        //     $message->to($pengaduan)->subject('Ada Laporan Pengaduan masuk nichh');
+        // });
+        
         $petugas = User::all();
         return view('dashboard.petugas.index', compact('petugas'));
     }

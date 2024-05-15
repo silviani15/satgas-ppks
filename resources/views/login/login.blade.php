@@ -1,4 +1,20 @@
 @extends('layout.main')
+<style>
+    .password-toggle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .password-toggle i {
+        color: #666;
+    }
+
+    .password-toggle i:hover {
+        color: #333;
+    }
+</style>
 
 @section('container')
     <div class="row justify-content-center" style="margin-top: 15%">
@@ -25,7 +41,8 @@
             @endif
             <main class="form-signin">
                 <h1 class="h3 mb-3 fw-normal text-center"><b>Please Login</b></h1>
-                <h5 class="h6 mb-3 fw-normal text-center"><span class="text-danger"> *</span>Login Khusus Petugas Satgas PPKS UKDW</h5>
+                <h5 class="h6 mb-3 fw-normal text-center"><span class="text-danger"> *</span>Login Khusus Petugas Satgas
+                    PPKS UKDW</h5>
                 <form action="/login" method="post">
                     @csrf
                     <div class="form-floating">
@@ -42,6 +59,9 @@
                         <input type="password" name="password" class="form-control" id="password" placeholder="Password"
                             required>
                         <label for="password">Password</label>
+                        <div class="password-toggle">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </div>
                     </div>
 
                     <button class="btn w-100 py-2" style="background-color: #04372E; color: #EBFEFE"
@@ -53,3 +73,15 @@
         </div>
     </div>
 @endsection
+
+<script>document.addEventListener('DOMContentLoaded', function () {
+    const passwordInput = document.getElementById('password');
+    const toggleButton = document.querySelector('.password-toggle');
+
+    toggleButton.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+});
+</script>

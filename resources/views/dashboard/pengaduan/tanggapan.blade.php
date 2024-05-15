@@ -21,16 +21,32 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger mt-3">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <form action="{{ route('tanggapan.store') }}" method="post" accept-charset="utf-8">
                             @csrf
                             <div class="form-group">
-                                <input type="hidden" name="tanggal_tanggapan" value="{{ Carbon\Carbon::now('Asia/Jakarta')->toDateString() }}">
+                                <input type="hidden" name="tanggal_tanggapan"
+                                    value="{{ Carbon\Carbon::now('Asia/Jakarta')->toDateString() }}">
                                 <input type="hidden" name="pengaduan_id" value="{{ $pengaduan->id }}">
                                 <label for="tanggapan"><b>Tanggapan</b></label><br>
-                                <br><textarea class="form-control" name="tanggapan" rows="10" style="margin-bottom:15px"></textarea>
+                                <br>
+                                <textarea class="form-control" name="tanggapan" rows="10" style="margin-bottom:15px"></textarea>
                             </div>
-                            <button class="btn btn-primary form-control" type="submit">Tanggapi</button>
+                            <div id="validation-message" class="alert alert-danger" style="display: none;">
+                                Harap isi tanggapan sebelum menekan tombol "Tanggapi".
+                            </div>
+                            <button class="btn form-control" style="background-color: #007663; color:aliceblue"
+                                type="submit">Tanggapi</button>
                         </form>
+
                     </div>
                 </div>
             </div>

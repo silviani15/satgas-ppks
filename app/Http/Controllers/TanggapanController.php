@@ -7,6 +7,8 @@ use App\Models\Tanggapan;
 use App\Models\Pengaduan;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TanggapanNotification;
 
 class TanggapanController extends Controller
 {
@@ -39,6 +41,11 @@ class TanggapanController extends Controller
     
     public function store(Request $request)
     {
+        $request->validate([
+            'pengaduan_id' => 'required|exists:pengaduans,id',
+            'tanggapan' => 'required',
+        ]);
+        
         // echo "<pre>";
         // print_r($request->all());
         // echo $user_id = ;
@@ -63,7 +70,22 @@ class TanggapanController extends Controller
         $tanggapan->save();
         // print_r($tanggapan);
         // die();
-        return redirect()->back(); 
+        // return redirect()->back(); 
+
+        try {
+            // Kirim email notifikasi kepada pelapor
+            $pengaduan = $tanggapan->pengaduan;
+            $email_pelapor = $pengaduan->email_pelapor;
+            $status_laporan = $pengaduan->status_laporan;
+        
+            Mail::to($email_pelapor)->send(new TanggapanNotification($status_laporan, $request->input('tanggapan'), $pengaduan->kode_tracking));
+            
+            // Berhasil mengirim email
+            return redirect()->back()->with('success', 'Tanggapan berhasil disimpan dan email notifikasi terkirim.');
+        } catch (\Exception $e) {
+            // Tangani kesalahan jika terjadi
+            return redirect()->back()->with('error', 'Gagal mengirim email notifikasi: ' . $e->getMessage());
+        }
 
         // Tanggapan::create($request->all());
 

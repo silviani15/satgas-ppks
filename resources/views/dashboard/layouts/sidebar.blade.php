@@ -26,16 +26,12 @@
                             <i class="fa-solid fa-circle-user"></i> Petugas</a>
                     </li>
                 </ul>
-                <ul class="nav flex-column">
+                {{-- <ul class="nav flex-column">
                     <li class="nav-item">
-                        {{-- <a class="nav-link {{ Request::is('dashboard/pengaduan/export-pdf*') ? 'active' : '' }}"
-                            href="{{ route('pengaduan.exportPDF') }}">
-                            <i class="fa-solid fa-download"></i> Export PDF
-                        </a> --}}
                         <a class="nav-link {{ Request::is('dashboard/export-pdf') ? 'active' : '' }}" href="/dashboard/export-pdf">
                             <i class="fa-solid fa-house"></i> Export PDF Pengaduan</a>
                     </li>
-                </ul>
+                </ul> --}}
             @endcan
         @endunless
     </div>

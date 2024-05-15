@@ -1,5 +1,11 @@
 @extends('layout.main')
 <link rel="icon" href="{{ asset('img/logoukdw.png') }}" type="image/icontype" />
+<head>
+    <!-- PWA  -->
+    <meta name="theme-color" content="#6777ef" />
+    <link rel="apple-touch-icon" href="{{ asset('ppks.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+</head>
 
 <link rel="stylesheet" href="css/index.css" />
 <!------------------------------------------- A R T I C L E ------------------------------------------------------>
@@ -54,8 +60,8 @@
                                 Universitas Kristen Duta Wacana harus menunjukkan sikap tegas terhadap kekerasan seksual
                                 sebagai institusi pendidikan tinggi Kristen. UKDW berkomitmen dalam mencegah serta
                                 menangani tindakan kekerasan seksual.</p>
-                            <a href="/pengantar" class="btn btn-warning scrollto">Baca Selengkapnya...</a>
-                            <a href="#" class="btn btn-warning scrollto" target="__blank">Petunjuk Pelaporan</a>
+                            <a href="/pengantar" class="btn scrollto" style="background: #007663; color: white;">Baca Selengkapnya...</a>
+                            <a href="#" class="btn scrollto" style="background: #007663; color: white;" target="__blank">Petunjuk Pelaporan</a>
                             <a href="/laporkan" class="btn btn-danger scrollto">Laporkan disini !</a>
                         </div><br>
                         <div class="col-lg-6 text-center">
@@ -256,7 +262,7 @@
                     berperan aktif dalam menciptakan lingkungan yang aman dan bebas dari kekerasan seksual.
                 </p>
                 <a href="https://youtu.be/bPpwv5kohuU?si=WtyvU8nJGPAVVlSI" target="_blank"
-                    class="btn btn-warning scrollto">Kanal Youtube <i class="fa fa-arrow-right"
+                    class="btn scrollto" style="background: #007663; color: white;">Kanal YouTube <i class="fa fa-arrow-right"
                         aria-hidden="true"></i></a>
             </div>
         </div>
@@ -274,7 +280,7 @@
                         <img src="{{ asset('img/lapor.png') }}" class="card-img-top" alt="..." style="width: 80%;" />
                         <div class="card-body">
                             <h5 class="card-title">Lapor Diri</h5>
-                            <p class="card-text" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dengan melaporkan diri,
+                            <p class="card-text" style="font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dengan melaporkan diri,
                                 Satgas Pencegahan dan Penanganan Kekerasan Seksual di Universitas Kristen Duta Wacana
                                 akan lebih optimal dalam memberikan pelayanan dan perlindungan kepada Anda. Bagi Anda
                                 yang memerlukan bantuan atau mengalami kekerasan seksual, cukup melaporkan diri melalui
@@ -289,7 +295,7 @@
                         <img src="{{ asset('img/beranda/fasil2.png') }}" class="card-img-top" alt="..." />
                         <div class="card-body">
                             <h5 class="card-title">Pelayanan</h5>
-                            <p class="card-text" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Satgas Pencegahan dan
+                            <p class="card-text" style="font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Satgas Pencegahan dan
                                 Penanganan Kekerasan Seksual di Universitas Kristen Duta Wacana menyediakan layanan
                                 mandiri bagi korban dan individu terkait. Ini mencakup legalisasi, surat keterangan,
                                 serta pencatatan dan pelaporan. Anda dapat dengan mudah melacak status layanan ini
@@ -302,7 +308,7 @@
                         <img src="{{ asset('img/beranda/fasil3.png') }}" class="card-img-top" alt="..." />
                         <div class="card-body">
                             <h5 class="card-title">Pengaduan</h5>
-                            <p class="card-text" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Anda dapat dengan mudah
+                            <p class="card-text" style="font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Anda dapat dengan mudah
                                 melaporkan kasus kekerasan seksual atau memberikan pengaduan terhadap pelayanan yang
                                 Anda terima melalui fasilitas lapor diri di portal yang disediakan oleh Satgas
                                 Pencegahan dan Penanganan Kekerasan Seksual di Universitas Kristen Duta Wacana. Selain
@@ -315,4 +321,26 @@
         </div>
     </div>
     @include('main.footer')
+
+    <div>
+        <script src="{{ asset('/sw.js') }}"></script>
+        <script>
+            if ("serviceWorker" in navigator) {
+                // Register a service worker hosted at the root of the
+                // site using the default scope.
+                navigator.serviceWorker.register("/sw.js").then(
+                    (registration) => {
+                        console.log("Service worker registration succeeded:", registration);
+                    },
+                    (error) => {
+                        console.error(`Service worker registration failed: ${error}`);
+                    },
+                );
+            } else {
+                console.error("Service workers are not supported.");
+            }
+        </script>
+    </div>
+
+
 </section>

@@ -69,7 +69,7 @@
                 <trix-editor input="body"></trix-editor>
             </div>
 
-            <button type="submit" class="btn btn-primary">Create Artikel</button>
+            <button type="submit" class="btn" style="background-color: #007663; color:aliceblue">Create Artikel</button>
         </form>
     </div>
 

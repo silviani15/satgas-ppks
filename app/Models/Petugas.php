@@ -12,4 +12,9 @@ class Petugas extends Model
     protected $table = 'users';
     
     protected $fillable = ['nama', 'username', 'email', 'is_admin', 'activation_status'];
+
+    // public function complaints()
+    // {
+    //     return $this->hasMany(Pengaduan::class, 'user_id'); 
+    // }
 }

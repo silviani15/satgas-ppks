@@ -9,6 +9,9 @@ use App\Models\Pengaduan;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Notifications\NewComplaintNotification;
+use Illuminate\Support\Facades\Notification;
 
 class LaporkanController extends Controller
 {
@@ -266,6 +269,28 @@ class LaporkanController extends Controller
             'kode_otp' => 'required|string',
             'agree_terms' => 'required|accepted',
         ]));
+        // dd($request->all());
+
+        if ($request->hasFile('file_lampiran')) {
+            error_log('ada file baru');
+
+            $filePath = $request->file('file_lampiran')->store('lampiran');
+            $data_step_6['file_lampiran'] = $filePath;
+            // foreach ($request->file('file_lampiran') as $file) {
+            //     $nama_file = $file->getClientOriginalName();
+            //     error_log($nama_file);
+            //     // $validatedData['file_lampiran'] = $file->store($directory, 'public');
+            //     // $path = Storage::disk('public')->putFileAs($directory, $file, $nama_file);
+                
+                
+            //     $file->move(public_path('storage/lampiran'),$nama_file);
+            //     // $path = Storage::disk('public')->putFileAs('/lampiran,', $file, $nama_file);
+                
+            //     // $path = Storage::putFileAs($directory, $file, $nama_file);
+            //     // $mergedData['file_lampiran'] = $path;
+            //     // error_log("Path: " . $path);
+            // }
+        }
 
         // dd($data_step_6);
 
@@ -316,30 +341,20 @@ class LaporkanController extends Controller
         // dd($mergedData); //ini nyoba aja
 
 
-        $directory = 'lampiran';
-        Storage::makeDirectory($directory);
-        
-        // Simpan file lampiran ke dalam storage
-        if ($request->files) {
-            foreach ($request->files as $file) {
-                $nama_file = $file->getClientOriginalName();
-                // $validatedData['file_lampiran'] = $file->store($directory, 'public');
-                // $path = Storage::disk('public')->putFileAs($directory, $file, $nama_file);
-                $path = Storage::disk('public')->putFileAs('/lampiran,', $file, $nama_file);
-                
-                // $path = Storage::putFileAs($directory, $file, $nama_file);
-                // $mergedData['file_lampiran'] = $path;
-                error_log("Path: " . $path);
-            }
-        }
+        // $directory = 'lampiran';
+        // Storage::makeDirectory($directory);
 
         // error_log(json_encode($mergedData));
         
     // Simpan data aduan ke dalam database
 
     Pengaduan::create($mergedData);
+    // $pengaduan = Pengaduan::create($mergedData);
 
-    // Redirect pengguna ke halaman tracking setelah aduan berhasil diproses
+    // // Send notification to the relevant users
+    // $recipients = User::whereIn('is_admin', ['admin', 'petugas'])->get();
+    // Notification::send($recipients, new NewComplaintNotification($pengaduan));
+ 
     return redirect()->route('trackingAduan')->with('success', 'Aduan Anda berhasil dikirim.');
     }
 

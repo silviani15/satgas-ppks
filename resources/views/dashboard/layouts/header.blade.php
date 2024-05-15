@@ -20,12 +20,25 @@
     </button>
 
 
+    {{-- @php
+        $unreadNotifications = Auth::user()->unreadNotifications;
+    @endphp
+    <button type="button" class="btn btn-dark position-relative" style="margin-left: 74%" data-bs-toggle="modal"
+        data-bs-target="#notificationModal">
+        <i class="fa-solid fa-bell" style="margin-top: 13px"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            style="margin-top: 11px">
+            {{ $unreadNotifications->count() }}
+            <span class="visually-hidden">unread messages</span>
+        </span>
+    </button> --}}
+
+
     <div class="navbar-nav">
         <div class="nav-item text-nowrap">
             <form id="logoutDash" action="/logout" method="post">
                 @csrf
-                <button type="button" class="nav-link px-3 bg-dark border-0" onclick="confirmLogout()">Logout<span
-                        data-feather="log-out"></span></button>
+                <button type="button" class="nav-link px-3 bg-dark border-0" onclick="confirmLogout()">Logout <i class="fa-solid fa-right-from-bracket"></i></button>
             </form>
 
             <script>

@@ -21,7 +21,8 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'is_admin', // Tambahkan is_admin ke dalam $fillable
+        'is_admin',
+        'web_token',
     ];
 
     protected $guarded = ['id'];
@@ -54,4 +55,17 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
     
+    /**
+     * Specifies the user's FCM token
+     *
+     * @return string|array
+     */
+    
+    public function routeNotificationForFcm()
+    {
+        return [
+            $this->fcm_token,
+            $this->web_token,
+        ];
+    }
 }

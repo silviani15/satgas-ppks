@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\NewComplaintNotification;
+use App\Models\User;
+use Illuminate\Support\Facades\Notification;
+
 
 class DashboardPostController extends Controller
 {
@@ -18,6 +22,8 @@ class DashboardPostController extends Controller
         return view('dashboard.artikel.index', [
             'artikel' => Post::where('user_id', auth()->user()->id)->get()
         ]);
+
+        
     }
 
     /**

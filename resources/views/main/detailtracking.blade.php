@@ -13,18 +13,22 @@
         border-radius: 5px;
         padding: 10px;
         margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 20px;
         margin-left: 10%;
+        /* Sesuaikan margin kiri sesuai kebutuhan */
     }
 
     .pdf-item p {
-        margin-left: 3%;
-        flex-grow: 1;
-        border-right: 15px;
+        margin-left: 0;
+        /* Hilangkan margin kiri */
+        margin-top: 5px;
+        /* Atur margin atas */
     }
+
+    .pdf-item p:first-child {
+        margin-bottom: 5px;
+        /* Atur margin bawah untuk paragraf pertama */
+    }
+
 
     .pdf-item i {
         font-size: 50px;
@@ -94,14 +98,15 @@
                 style="max-width: 900px; margin-left: 10%; margin-top: 5px; border-top: 2px solid #007663" />
         </div>
 
-        <div class="pdf-container">
+        <div class="pdf-container" style="text-align: justify;">
             @forelse ($tanggapan as $tanggap)
-                <div class="pdf-item" style="font-size: 20px">
-                    <p>Tanggal Tanggapan : {{ $tanggap->tgl_tanggapan }}</p>
+                <div class="pdf-item" style="font-size: 16px">
+                    {{-- <p><strong>Tanggal Tanggapan : </strong> {{ $tanggap->tgl_tanggapan }}</p> --}}
+                    <p><strong>Tanggal Tanggapan : </strong> {{ date('d-m-Y', strtotime($tanggap->tgl_tanggapan)) }}</p>
                     <p>{{ $tanggap->tanggapan }}</p>
                 </div>
             @empty
-                <div class="pdf-item" style="font-size: 20px">
+                <div class="pdf-item" style="font-size: 16px">
                     <p>Tidak ada tanggapan untuk pengaduan ini.</p>
                 </div>
             @endforelse

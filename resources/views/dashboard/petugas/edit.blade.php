@@ -1,4 +1,20 @@
 @extends('dashboard.layouts.main')
+<style>
+    .password-toggle {
+        position: absolute;
+        top: 25px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .password-toggle i {
+        color: #666;
+    }
+
+    .password-toggle i:hover {
+        color: #333;
+    }
+</style>
 
 @section('styles')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -41,15 +57,21 @@
             <div class="modal-body">
                 <h4><label for="new_password" class="form-label">New Password</label></h4>
                 <p>Silahkan klik Reset Password</p>
-                <input type="text" class="form-control" id="new_password" name="new_password" required>
-                <span id="displayPassword" class="ml-2" style="font-size: 20px; margin-left:10px"></span>
-
-                {{-- <h4><label for="new_password" class="form-label">New Password</label></h4>
-                <p>Silahkan klik Reset Password</p>
-                <input type="password" class="form-control" id="new_password" name="new_password" required>
-                <button id="resetPasswordBtn" autofocus type="button" class="btn btn-primary mt-3">Reset
-                    Password</button>
-                <span id="displayPassword" class="ml-2" style="font-size: 20px; margin-left:10px"></span> --}}
+                <div class="form-floating">
+                    <input type="password"
+                        class="form-control rounded-bottom password-input @error('new_password') is-invalid @enderror"
+                        id="new_password" name="new_password" required>
+                    <label for="new_password">New Password</label>
+                    <div class="password-toggle">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </div>
+                    <span id="displayPassword" class="ml-2" style="font-size: 20px; margin-left:10px"></span>
+                </div>
+                @error('new_password')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <button id="updateBtn" class="btn w-100 py-2 mt-3" style="background-color: #04372E; color: #EBFEFE;"
@@ -63,3 +85,16 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const passwordInput = document.getElementById('new_password');
+        const toggleButton = document.querySelector('.password-toggle');
+
+        toggleButton.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+    });
+</script>

@@ -1,10 +1,10 @@
 @extends('layout.main')
 
 <link rel="stylesheet" href="css/index.css" />
-<br><br><br>
+<br><br>
 <p>
     <img src="{{ asset('img/profil/pengantar.png') }}" alt=""
-        style="width: 100%; height: 550px; object-fit: cover" />
+        style="width: 110%; height: 650px; object-fit: cover" />
 </p>
 <div class="container">
     <table class="table" style="margin-top: 5px;">

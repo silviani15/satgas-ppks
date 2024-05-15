@@ -14,8 +14,8 @@
 
 @section('container')
     <div class="f1">
-        <h1 style="margin-top: 8%">Aduan Online</h1>
-        <a href="#" class="btn btn-warning scrollto" target="__blank" style="margin-top: 2%">Petunjuk Pelaporan</a>
+        <h1 style="margin-top: 8%">Aduan Online</h1><br>
+        <a href="#" class="btn scrollto" style="background-color: #007663; color: white;" target="__blank" style="margin-top: 2%">Petunjuk Pelaporan</a>
         <div class="f1-steps" style="margin-top: 3%">
             <div class="f1-progress">
                 <div class="f1-progress-line" data-now-value="25" data-number-of-steps="4" style="width: 16%"></div>
@@ -126,7 +126,7 @@
                     @endif
                 </div>
                 <div class="f1-buttons float-end mt-4 mb-4">
-                    <button type="submit" class="btn btn-primary btn-next">Selanjutnya <i
+                    <button type="submit" class="btn btn-next" style="background-color: #007663; color: #EBFEFE;">Selanjutnya <i
                             class="fa fa-arrow-right"></i></button>
                 </div>
             </div>

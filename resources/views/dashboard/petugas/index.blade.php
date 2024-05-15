@@ -31,8 +31,8 @@
 
         <div class="table-responsive">
             <a href="/dashboard/petugas/create" class="btn btn-primary mb-3"
-                style="margin-left:90%; background-color: #007663; color: #EBFEFE">Add Petugas</a>
-            <h5 class="h2">Daftar Petugas</h5>
+                style="margin-left:85%; background-color: #007663; color: #EBFEFE">Tambah Petugas</a>
+            <h5 class="h2">Daftar Petugas</h5><br>
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>

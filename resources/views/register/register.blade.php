@@ -1,4 +1,20 @@
 @extends('layout.main')
+<style>
+    .password-toggle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .password-toggle i {
+        color: #666;
+    }
+
+    .password-toggle i:hover {
+        color: #333;
+    }
+</style>
 
 @section('container')
     <div class="row justify-content-center" style="margin-top: 15%">
@@ -40,20 +56,38 @@
                     </div>
                     <div class="form-floating">
                         <input type="password" name="password"
-                            class="form-control rounded-bottom @error('password')is-invalid @enderror" id="password"
-                            placeholder="Password" required>
+                            class="form-control rounded-bottom password-input @error('password') is-invalid @enderror"
+                            id="password" placeholder="Password" required>
                         <label for="password">Password</label>
+                        <div class="password-toggle">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </div>
                         @error('password')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
-                    </div>                  
+                    </div>
 
-                    <button class="btn w-100 py-2 mt-3" style="background-color: #04372E; color: #EBFEFE" type="submit">Register</button>
+                    <button class="btn w-100 py-2 mt-3" style="background-color: #04372E; color: #EBFEFE"
+                        type="submit">Register</button>
                 </form>
-                <small class="d-block text-center mt-3">Already Registered? <a href="/login" style="color: #007663">Login</a></small>
+                <small class="d-block text-center mt-3">Already Registered? <a href="/login"
+                        style="color: #007663">Login</a></small>
             </main>
         </div>
     </div>
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const passwordInput = document.getElementById('password');
+        const toggleButton = document.querySelector('.password-toggle');
+
+        toggleButton.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+    });
+</script>

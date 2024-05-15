@@ -29,6 +29,7 @@
         </div>
         <div id="calendar-section" class="section">
             <h2 style="text-align: center">Kalender Rencana Kegiatan Satgas UKDW</h2>
+            <h2 style="text-align: center">Agustus - Desember 2024</h2>
             <img src="{{ asset('img/program/kalender.png') }}" alt="Calendar" class="calendar-image" />
             <div class="three-column">
                 <div class="column">
@@ -227,19 +228,19 @@
         <div class="program-card">
             <a href="{{ route('program.detail', ['id' => 1]) }}" style="text-decoration:none; color:#04372E">
                 <h3>Koordinasi Nasional PPKS</h3>
-                <p>Koordinasi Nasional Pencegahan dan Penanganan Kekerasan Seksual di Jakarta.</p>
+                <p>DKI Jakarta, 03 October 2023</p>
             </a>
         </div>
         <div class="program-card">
             <a href="{{ route('program.detail', ['id' => 2]) }}" style="text-decoration:none; color:#04372E">
                 <h3>Sosialisasi Satgas PPKS Di Rangkaian OKA</h3>
-                <p>Pemahaman Tentang Pencegahan Kekerasan Seksual.</p>
+                <p>Universitas Kristen Duta Wacana, 22 Maret 2024</p>
             </a>
         </div>
         <div class="program-card">
             <a href="{{ route('program.detail', ['id' => 3]) }}" style="text-decoration:none; color:#04372E">
                 <h3>Lomba Video Pendek</h3>
-                <p>Merayakan Hari Perempuan Internasional Dengan Mengadakan Lomba.</p>
+                <p>Yogyakarta, 10 Juni 2023</p>
             </a>
         </div>
     </div>

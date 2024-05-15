@@ -157,9 +157,9 @@
                 </div>
                 <div class="f1-buttons float-end mt-4 mb-4">
                     <button type="button" id="button-back" name="previous_button"
-                        class="btn btn-warning btn-previous"><i class="fa fa-arrow-left"></i>
+                        class="btn btn-previous" style="background-color: #BFB7AE;"><i class="fa fa-arrow-left"></i>
                         Sebelumnya</button>
-                    <button type="submit" class="btn btn-primary btn-next">Selanjutnya <i
+                    <button type="submit" class="btn btn-next" style="background-color: #007663; color: #EBFEFE;">Selanjutnya <i
                             class="fa fa-arrow-right"></i></button>
                 </div>
             </div>
